@@ -30,9 +30,7 @@ router.get("/all", (req, res) => {
 //http://localhost:3000/api/person/?firstName=Remousse&lastName=Mousse
 router.get("/", (req, res) => {
     const {firstName, lastName} = req.query;
-    //const {id} = req.query;
     res.send(persons.filter(p=>p.firstName.includes(firstName) || p.lastName.includes(lastName)));
-    //res.send(persons.filter(p=>p.id == id));
 });
 
 
