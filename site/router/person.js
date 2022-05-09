@@ -22,13 +22,12 @@ let persons = [
     }
 ];
 
-/*
-router.get("/", (req, res) => {
+router.get("/all", (req, res) => {
     res.send(persons)
 });
- */
 
 
+//http://localhost:3000/api/person/?firstName=Remousse&lastName=Mousse
 router.get("/", (req, res) => {
     const {firstName, lastName} = req.query;
     //const {id} = req.query;
