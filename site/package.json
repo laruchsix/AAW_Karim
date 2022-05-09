@@ -2,18 +2,21 @@
   "name": "site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "nodemon index.js",
-    "start": "forever index.js"
+    "start": "nodemon server.js",
+    "startweb": "parcel src/index.jsx",
+    "build": "parcel build src/index.jsx"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "forever": "^4.0.3",
-    "parcel": "^2.5.0"
+    "forever": "^0.15.3",
+    "parcel": "^2.5.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

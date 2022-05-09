@@ -4,11 +4,12 @@ const port = 3000;
 const config = require("./config");
 const api_router = require("./router/api")
 
+// server config
 app.use(config.public_Path, express.static("public"));
 app.use(express.json());
 
+// the api route
 app.use("/api", api_router);
 
-app.get("/", (req, res) => res.send("Hello World!"));
-
+// launch the server
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
