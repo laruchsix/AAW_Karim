@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const {eventRouter} = require("./event");
-//const {person} = require("./person");
+const {personRouter} = require("./person");
 
 router.use("/event", eventRouter);
-//router.use("/person", person);
+router.use("/person", personRouter);
 
 module.exports = router;
 
