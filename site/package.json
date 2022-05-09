@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "startweb": "parcel src/index.jsx",
-    "build": "parcel build src/index.jsx"
+    "startweb": "parcel src/app/index.jsx",
+    "build": "parcel build src/app/index.jsx"
   },
   "author": "",
   "license": "ISC",
