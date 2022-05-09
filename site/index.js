@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const config = require("./config");
+
+app.use(config.public_Path, express.static("public"));
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
