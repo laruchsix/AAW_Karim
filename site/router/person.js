@@ -22,18 +22,9 @@ let persons = [
     }
 ];
 
-/*
-router.get("/", (req, res) => {
-    res.send(persons)
-});
- */
-
-
 router.get("/", (req, res) => {
     const {firstName, lastName} = req.query;
-    //const {id} = req.query;
     res.send(persons.filter(p=>p.firstName.includes(firstName) || p.lastName.includes(lastName)));
-    //res.send(persons.filter(p=>p.id == id));
 });
 
 
