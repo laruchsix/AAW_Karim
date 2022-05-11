@@ -5,8 +5,8 @@ const EventAdd = (props)=>{
 
     const validate = (e) => {
         e.preventDefault();
-        const date = (new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay() );
-        const body = JSON.stringify({"name":name, 'date': date});
+        const date = (new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate() );
+        const body = JSON.stringify({"title":name, 'date': date});
         fetch('api/event', {
             method: "POST",
             body: body,
@@ -15,16 +15,15 @@ const EventAdd = (props)=>{
                 "Accept": "application/json"
             }
         })
-            .then((response) => response.json())
-            .then((events)=> {
-                props.onAdd();
-            });
-
+        .then((response) => response.json())
+        .then((events)=> {
+            props.onAdd();
+        });
     }
 
     return (
         <form onSubmit={(e) => validate(e)}>
-            <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)}/>
+            <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
             <button>Valider</button>
         </form>
     );
