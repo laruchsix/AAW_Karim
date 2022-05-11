@@ -17,9 +17,18 @@ class App extends React.Component {
 
     loadEvents() {
         this.setState({loading: true});
-        fetch("/api/event", {metod : "GET"})
+        fetch("/api/event", {method : "GET"})
             .then((response) => response.json())
             .then((events)=> {
+                this.setState({loading: false, events: events});
+            });
+    }
+
+    deleteEvent(id){
+        this.setState({loading: true});
+        fetch("/api/event/" + id, {method : "DELETE"})
+            .then((response) => response.json())
+            .then((events)=>{
                 this.setState({loading: false, events: events});
             });
     }
@@ -33,6 +42,7 @@ class App extends React.Component {
                             <th>Id</th>
                             <th>Title</th>
                             <th>Date</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +52,9 @@ class App extends React.Component {
                                 <td>{event.id}</td>
                                 <td>{event.title}</td>
                                 <td>{event.date}</td>
+                                <td>
+                                    <button onClick = {() => this.deleteEvent(event.id)}>x</button>
+                                </td>
                             </tr>
                         })
                     }

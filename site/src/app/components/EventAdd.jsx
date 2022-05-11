@@ -5,7 +5,8 @@ const EventAdd = (props)=>{
 
     const validate = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name});
+        const date = new Date();
+        const body = JSON.stringify({"title":name, "date" : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()});
         fetch('api/event', {
             method: "POST",
             body: body,

@@ -37,6 +37,12 @@ router.post("/", (req, res)=>{
     res.send(events);
 })
 
+router.delete("/:id", (req, res) => {
+    console.log(req.params);
+    events = events.filter(event => event.id !== Number(req.params.id));
+    res.send(events);
+})
+
 module.exports = {
     eventRouter:router,
     events
