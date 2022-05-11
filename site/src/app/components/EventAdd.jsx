@@ -15,16 +15,15 @@ const EventAdd = (props)=>{
                 "Accept": "application/json"
             }
         })
-            .then((response) => response.json())
-            .then((events)=> {
-                props.onAdd();
-            });
-
+        .then((response) => response.json())
+        .then((events)=> {
+            props.onAdd();
+        });
     }
 
     return (
         <form onSubmit={(e) => validate(e)}>
-            <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)}/>
+            <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
             <button>Valider</button>
         </form>
     );
