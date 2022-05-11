@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Welcome from "./components/Welcome"
+import EventAdd from "./components/EventAdd"
 
 class App extends React.Component {
     constructor(props) {
@@ -12,6 +12,10 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.loadEvents()
+    }
+
+    loadEvents() {
         this.setState({loading: true});
         fetch("/api/event", {metod : "GET"})
             .then((response) => response.json())
@@ -43,6 +47,8 @@ class App extends React.Component {
                     }
                     </tbody>
                 </table>
+
+                <EventAdd onAdd={() => this.loadEvents()}/>
             </div>
         );
     }
