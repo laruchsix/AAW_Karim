@@ -7,4 +7,3 @@ router.use("/event", eventRouter);
 router.use("/person", personRouter);
 
 module.exports = router;
-
