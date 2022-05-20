@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {v4} = require("uuid");
 
 let persons = [
     {
@@ -16,16 +17,20 @@ let persons = [
     },
     {
         id: 3,
-        firstName: "Lenglet",
-        lastName: "Jo",
+        firstName: "Jo",
+        lastName: "Lenglet",
         event: "2",
     }
 ];
 
-router.get("/all", (req, res) => {
+router.get("/", (req, res) => {
     res.send(persons)
 });
 
+router.get("/:id", (req, res) => {
+    let ev = persons.filter(person => person.id === req.params.id);
+    res.send(ev);
+});
 
 //http://localhost:3000/api/person/?firstName=Remousse&lastName=Mousse
 router.get("/", (req, res) => {
@@ -36,13 +41,15 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     const person = req.body;
-    person.id = getNextId();
+    console.log(person);
+    person.id = v4();
     persons.push(person);
     res.send(persons);
 })
 
 router.delete("/:id", (req, res) => {
-    persons = persons.filter(p=>p.id !== Number(req.params.id))
+    console.log(req.params);
+    persons = persons.filter(p=> ""+p.id !== req.params.id)
     res.send(persons);
 });
 

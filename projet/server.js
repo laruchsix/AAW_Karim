@@ -38,6 +38,8 @@ app.use("/test", async (req, res) => {
         console.error(error.message);
     }
 });*/
-
+app.get("/*", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
 // launch the server
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

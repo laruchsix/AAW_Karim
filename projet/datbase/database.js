@@ -12,5 +12,3 @@ const pgClient = new pg.Client(process.env.POSTGRESQL_ADDON_URI);
 pgClient.connect();
 
 module.exports = pgClient;
-
-

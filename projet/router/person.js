@@ -3,6 +3,33 @@ const router = express.Router();
 const pool = require("../datbase/database");
 
 /**
+ * Connect a person
+ */
+router.post("/connexion", (req, res) => {
+    const {email, password} = req.body;
+    const persons = async () => {
+        try{
+            const result = await pool.query({
+                name: "read-persons",
+                text: 'select * from person where email = $1 AND password = $2',
+                values: [email, password],
+
+            });
+            console.log(result);
+            return result.rows[0];
+
+        } catch(err) {
+            console.error(err);
+            res.send(err);
+        }
+    }
+    persons().then(result=>{
+        console.log("res",result);
+        res.send(result);
+    })
+});
+
+/**
  * get all persons
  */
 router.get("/", (req, res) => {
