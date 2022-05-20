@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     BrowserRouter,
     Switch,
@@ -16,7 +16,7 @@ const Menu = () => {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <Link to="/login">login</Link>
                         </li>
 
                         <li>
@@ -31,7 +31,7 @@ const Menu = () => {
                         <Route path="/about/2">
                             <About2 />
                         </Route>
-                        <Route path="/about">
+                        <Route path="/login">
                             <About />
                         </Route>
                         <Route path="/toto">
@@ -50,10 +50,29 @@ const Menu = () => {
 }
 
 function Home() {
-    return <h2>Home</h2>;
+    const [cookie, setCookie] = useState({
+        loading : true
+    });
+
+    fetch('/api/cookie')
+        .then(response => response.json())
+        .then(data =>  setCookie({
+            date : data,
+            loading : false
+        }));
+    
+    if (cookie.loading) {
+        return (<div>Loading...</div>);
+    } else {
+        return (<div>{cookie.date}</div>);
+    }
 }
 
 function About() {
+    const [identification, setIdentification] = useState();
+    const [errorMessage, setErrorMessage] = useState("");
+    
+
     return <h2>About</h2>;
 }
 
