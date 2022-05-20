@@ -8,51 +8,57 @@ import {
 } from "react-router-dom";
 
 const Menu = () => {
+a
+    const [token, setToken] = useState("");
 
-        return (
-            <BrowserRouter>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to="/Connexion">Connexion</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Inscription</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Accueil</Link>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <Link to="/">Planning</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Profil</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Deconnexion</Link>
-                        </li>
-                    </ul>
+    const updateToken = (value) => {
+        setToken(value);
+    }
 
-                    <Switch>
-                        <Route path="/Connexion">
-                            <Connexion />
-                        </Route>
-                        <Route path="/login">
-                            <About />
-                        </Route>
-                        <Route path="/toto">
-                            <Toto />
-                        </Route>
-                        <Route path="/">
-                            <Home />
-                        </Route>
-                    </Switch>
-                </div>
-            </BrowserRouter>
+    return (
+        <BrowserRouter>
+            <div>
+                <ul>
+                    <li>
+                        <Link to="/Connexion">Connexion</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Inscription</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Accueil</Link>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <Link to="/">Planning</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Profil</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Deconnexion</Link>
+                    </li>
+                </ul>
 
-        );
+                <Switch>
+                    <Route path="/Connexion">
+                        <Connexion />
+                    </Route>
+                    <Route path="/login">
+                        <About />
+                    </Route>
+                    <Route path="/toto">
+                        <Toto />
+                    </Route>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+                </Switch>
+            </div>
+        </BrowserRouter>
+
+    );
 
 
 }
