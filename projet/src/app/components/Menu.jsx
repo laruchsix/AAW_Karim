@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Connexion from "./Connexion";
 import {
     BrowserRouter,
     Switch,
@@ -13,23 +14,30 @@ const Menu = () => {
                 <div>
                     <ul>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/Connexion">Connexion</Link>
                         </li>
                         <li>
-                            <Link to="/login">login</Link>
-                        </li>
-
-                        <li>
-                            <Link to="/about/2">About2</Link>
+                            <Link to="/">Inscription</Link>
                         </li>
                         <li>
-                            <Link to="/toto">Toto</Link>
+                            <Link to="/">Accueil</Link>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <Link to="/">Planning</Link>
+                        </li>
+                        <li>
+                            <Link to="/">Profil</Link>
+                        </li>
+                        <li>
+                            <Link to="/">Deconnexion</Link>
                         </li>
                     </ul>
 
                     <Switch>
-                        <Route path="/about/2">
-                            <About2 />
+                        <Route path="/Connexion">
+                            <Connexion />
                         </Route>
                         <Route path="/login">
                             <About />

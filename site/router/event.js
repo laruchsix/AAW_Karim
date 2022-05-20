@@ -39,7 +39,7 @@ router.post("/", (req, res)=>{
 
 router.delete("/:id", (req, res) => {
     console.log(req.params);
-    events = events.filter(event => event.id !== Number(req.params.id));
+    events = events.filter(event => ""+event.id !== req.params.id);
     res.send(events);
 })
 
