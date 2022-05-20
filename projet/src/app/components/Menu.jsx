@@ -6,40 +6,33 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import "./Menu.css";
 
 const Menu = () => {
 a
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState();
 
     const updateToken = (value) => {
         setToken(value);
     }
 
+
     return (
         <BrowserRouter>
             <div>
-                <ul>
-                    <li>
-                        <Link to="/Connexion">Connexion</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Inscription</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Accueil</Link>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <Link to="/">Planning</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Profil</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Deconnexion</Link>
-                    </li>
-                </ul>
+                <nav className={"menu"}>
+                    <Link to="/">Accueil</Link>
+                    {
+                        (token === undefined) ?
+                            <>
+                                <Link to="/Connexion">Connexion</Link>
+                                <Link to="/">Inscription</Link>
+                            </>
+                            : <>
+                                <h1>token.user</h1>
+                            </>
+                    }
+                </nav>
 
                 <Switch>
                     <Route path="/Connexion">
