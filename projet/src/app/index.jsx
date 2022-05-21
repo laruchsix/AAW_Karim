@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import Menu from "./components/Menu"
-import Welcome from "./components/Welcome"
+import "./style/index.css"
 
 class App extends React.Component {
     constructor(props) {
