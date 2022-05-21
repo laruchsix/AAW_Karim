@@ -12,7 +12,7 @@ router.get("/:id", (req, res) => {
 
     let sqlRequest = {
         name: "read-manche-" + req.params.id,
-        text: 'SELECT * FROM manche WHERE planning_id = ($1);',
+        text: 'SELECT * FROM manche WHERE planning_id = ($1) ORDER BY ordre;',
         values: [req.params.id]
     }
 
