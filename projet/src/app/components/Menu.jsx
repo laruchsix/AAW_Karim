@@ -6,6 +6,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import Home from "./Home/Home";
 import "../style/Menu.css";
 
 const Menu = () => {
@@ -24,34 +25,34 @@ const Menu = () => {
             <header>
                 <nav className={"menu"}>
                     <Link to="/">Home</Link>
-                    <Link to="/planning">Planning</Link>
+                    <Link to="/subscribe">Plan Sub</Link>
 
-                </nav>
-                <div className={"title-container"}>
-                    <h1 className={"title"}>{titlePage}</h1>
-                </div>
-                <div className={"user-info"}>
-                    {
-                        (token === undefined) ?
-                            <>
-                                <Link to="/login">Login</Link>
-                                <Link to="/register">Register</Link>
-                            </>
-                            : <>
-                                <h1 className={"user-name"}>{token.name}</h1>
-                                {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
-                                <Link to="/logout">Logout</Link>
-                                <div className={"user-container"}>
-                                    <Link to="/profile">
-                                        <img
-                                            className={"user-img"}
-                                            src="/basic_user_image.png"
-                                            alt="User Image"/>
-                                    </Link>
-                                </div>
-                            </>
-                    }
-                </div>
+                    </nav>
+                    <div className={"title-container"}>
+                        <h1 className={"title"}>{titlePage}</h1>
+                    </div>
+                    <div className={"user-info"}>
+                        {
+                            (token === undefined) ?
+                                <>
+                                    <Link to="/login">Login</Link>
+                                    <Link to="/register">Register</Link>
+                                </>
+                                : <>
+                                    <h1 className={"user-name"}>{token.name}</h1>
+                                    {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
+                                    <Link to="/logout">Logout</Link>
+                                    <div className={"user-container"}>
+                                        <Link to="/profile">
+                                            <img
+                                                className={"user-img"}
+                                                src="/basic_user_image.png"
+                                                alt="User Image"/>
+                                        </Link>
+                                    </div>
+                                </>
+                        }
+                    </div>
             </header>
                 <Switch>
                     <Route path="/login">
@@ -59,9 +60,6 @@ const Menu = () => {
                     </Route>
                     <Route path="/login">
                         <About />
-                    </Route>
-                    <Route path="/toto">
-                        <Toto />
                     </Route>
                     <Route path="/">
                         <Home />
@@ -72,25 +70,6 @@ const Menu = () => {
     );
 
 
-}
-
-function Home() {
-    const [cookie, setCookie] = useState({
-        loading : true
-    });
-
-    fetch('/api/cookie')
-        .then(response => response.json())
-        .then(data =>  setCookie({
-            date : data,
-            loading : false
-        }));
-    
-    if (cookie.loading) {
-        return (<div>Loading...</div>);
-    } else {
-        return (<div>{cookie.date}</div>);
-    }
 }
 
 function About() {
