@@ -1,10 +1,11 @@
 header {
     background-color: #3D5A80;
-    display: flex;
     padding: 8px;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
+
 
 /*
  * the nav bar to navigate on global pages
@@ -21,7 +22,7 @@ nav > * {
 /*
  * Style for bottom menu
  */
-a {
+a, button {
     background-color: #EE6C4D;
     border: 2px solid #293241;
     border-radius: 10px;
@@ -36,6 +37,12 @@ a {
 /*
  * the title content
  */
+.title-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .title {
     font-size: 30px;
     color: #ffffff;
@@ -83,3 +90,31 @@ a {
     height: 38px;
 }
 
+/*
+* the center of the page
+ */
+.center {
+    display: flex;
+    height: 100%;
+}
+
+aside {
+    background-color: #3D5A80;
+    height: auto;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    margin-block: 0px;
+}
+
+/**
+* for the footer
+ */
+footer {
+    text-align: end;
+    background-color: #3D5A80;
+    margin-block: 0px;
+    padding-top: 10px;
+    padding-block-end: 10px;
+    padding-bottom: 10px;
+}

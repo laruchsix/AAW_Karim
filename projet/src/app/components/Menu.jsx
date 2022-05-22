@@ -11,7 +11,7 @@ import "../style/Menu.css";
 
 const Menu = () => {
 
-    const [token, setToken] = useState({name : "user1", admin : false});
+    const [token, setToken] = useState();
 
     const [titlePage, setTitlePage] = useState("Home");
 
@@ -19,73 +19,86 @@ const Menu = () => {
         setToken(value);
     }
 
+    const userElems = () => {
+        if (token === undefined) {
+            return (
+                /*<>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                </>*/
+                <>
+                    <button onClick={Mylogin}>Login</button>
+                </>)
+        }
+        else {
+           return (
+               <>
+                <h1 className={"user-name"}>{token.name}</h1>
+                {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
+                <Link to="/logout">Logout</Link>
+                <button onClick={Mylogout}>MyLogout</button>
+
+                <div className={"user-container"}>
+                    <Link to="/profile">
+                        <img
+                            className={"user-img"}
+                            src="/basic_user_image.png"
+                            alt="User Image"/>
+                    </Link>
+                </div>
+            </>)
+        }
+    }
+
+
+    const Mylogin = () => {
+        setToken({
+            name: "John Doe",
+            admin: false
+        });
+    }
+    const Mylogout = () => {
+        setToken()
+    }
 
     return (
         <BrowserRouter>
             <header>
-                <nav className={"menu"}>
-                    <Link to="/">Home</Link>
-                    <Link to="/subscribe">Plan Sub</Link>
-
-                    </nav>
-                    <div className={"title-container"}>
-                        <h1 className={"title"}>{titlePage}</h1>
-                    </div>
-                    <div className={"user-info"}>
-                        {
-                            (token === undefined) ?
-                                <>
-                                    <Link to="/login">Login</Link>
-                                    <Link to="/register">Register</Link>
-                                </>
-                                : <>
-                                    <h1 className={"user-name"}>{token.name}</h1>
-                                    {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
-                                    <Link to="/logout">Logout</Link>
-                                    <div className={"user-container"}>
-                                        <Link to="/profile">
-                                            <img
-                                                className={"user-img"}
-                                                src="/basic_user_image.png"
-                                                alt="User Image"/>
-                                        </Link>
-                                    </div>
-                                </>
-                        }
-                    </div>
+                <div className={"title-container"}>
+                    <h1 className={"title"}>{titlePage}</h1>
+                </div>
+                <div className={"user-info"}>
+                    {userElems()}
+                </div>
             </header>
+            <div className={"center"}>
+                <aside>
+                        <Link to="/">Home</Link>
+                        {
+                            (token !== undefined) ?
+                                <Link to="/subscribe">Plan Sub</Link>
+                                : <></>
+                        }
+                </aside>
                 <Switch>
                     <Route path="/login">
                         <Connexion />
-                    </Route>
-                    <Route path="/login">
-                        <About />
                     </Route>
                     <Route path="/">
                         <Home />
                     </Route>
                 </Switch>
+            </div>
+            <footer>
+                <p>
+                    By EUR and almost EUR company
+                </p>
+            </footer>
         </BrowserRouter>
 
     );
 
 
-}
-
-function About() {
-    const [identification, setIdentification] = useState();
-    const [errorMessage, setErrorMessage] = useState("");
-    
-
-    return <h2>About</h2>;
-}
-
-function About2() {
-    return <h2>About2</h2>;
-}
-
-function Toto() {
-    return <h2>Toto</h2>;
 }
 
 export default Menu;
