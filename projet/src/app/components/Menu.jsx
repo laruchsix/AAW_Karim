@@ -7,6 +7,8 @@ import {
     Link
 } from "react-router-dom";
 import Home from "./Home/Home";
+import Login from "./Login";
+
 import "../style/Menu.css";
 
 const Menu = () => {
@@ -82,7 +84,7 @@ const Menu = () => {
                 </aside>
                 <Switch>
                     <Route path="/login">
-                        <Connexion />
+                        <Login />
                     </Route>
                     <Route path="/">
                         <Home />

@@ -1,4 +1,4 @@
-const requestManager = require("./database/databaseRequest");
+const requestManager = require("../database/databaseRequest");
 
 const verifyParamArray = (params, names, res) => {
     for (let i = 0; i < params.length; i++) {
@@ -7,7 +7,7 @@ const verifyParamArray = (params, names, res) => {
                 error: "missing parameter ${names[i]}"
             });
             return false;
-        }a
+        }
     }
 }
 
