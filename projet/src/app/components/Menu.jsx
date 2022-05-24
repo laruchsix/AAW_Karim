@@ -24,13 +24,13 @@ const Menu = () => {
     const userElems = () => {
         if (token === undefined) {
             return (
-                /*<>
+                <>
                     <Link to="/login">Login</Link>
                     <Link to="/register">Register</Link>
-                </>*/
-                <>
+                </>
+                /*<>
                     <button onClick={Mylogin}>Login</button>
-                </>)
+                </>*/)
         }
         else {
            return (
@@ -84,7 +84,7 @@ const Menu = () => {
                 </aside>
                 <Switch>
                     <Route path="/login">
-                        <Login />
+                        <Login updateToken={updateToken}/>
                     </Route>
                     <Route path="/">
                         <Home />

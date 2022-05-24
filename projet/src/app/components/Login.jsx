@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 
-const Login = () => {
+const Login = ({updateToken}) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 

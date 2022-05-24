@@ -45,25 +45,27 @@ router.post("/login", async (req, res) => {
             const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000));
 
             let user = result.result.rows[0];
+            console.log(user)
             let request = 'INSERT INTO token ("person_id", "expired_date") VALUES (' + user.id + ', ' + expirationDate + ') RETURNING id;'
             console.log(request);
             // TODO : check if the token of the user all ready exist
             result = await requestManager.RequestAsync({
-                text: 'INSERT INTO token ("person_id", "expired_date") VALUES ("($1)", "($2)") RETURNING id;',
+                text: 'INSERT INTO token ("person_id", "expired_date") VALUES (($1), ($2)) RETURNING token;',
                 values: [user.id, expirationDate]
             });
 
             if (result.error) {
                 console.log("Error while trying insert token into the database");
+                console.log(result)
                 res.status(500).send({
                     error: result.error
                 });
             } else {
                 // creat the cookie
                 let tokenContent = {
-                    id : result.result.rows[0].id,
-                    name : user.name,
-                    //email : user.email,
+                    id : result.result.rows[0].token,
+                    name : user.last_name,
+                    email : user.email,
                     admin : user.admin
                 };
                 res.cookie("token", tokenContent);
