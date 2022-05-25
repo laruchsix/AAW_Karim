@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const utils = require("./utils");
-const requestManager = require("../database/databaseRequest");
+const requestManager = require("../../../database/databaseRequest");
 
 router.get("/cookie", (req, res) => {
     res.send(req.cookies);
 });
 
 router.delete("/logout", (req, res) => {
+    console.log(req.cookies)
     if (req.cookies.token === undefined) {
         res.send({
             message: "You are not logged in"

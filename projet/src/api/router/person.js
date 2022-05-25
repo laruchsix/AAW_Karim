@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../database/database");
+const pool = require("../../../database/database");
 
 /**
  * Connect a person
@@ -32,7 +32,7 @@ router.post("/connexion", (req, res) => {
 /**
  * get all persons
  */
-router.get("/", (req, res) => {
+router.get("/user/person", (req, res) => {
     pool.query("SELECT * FROM person;", (err, result) => {
         if (err) {
             res.status(500).send({
@@ -46,7 +46,7 @@ router.get("/", (req, res) => {
 /**
  * add a new person
  */
-router.post("/", async (req, res) => {
+router.post("/person/", async (req, res) => {
     // get params
     let { first_name, last_name} = req.body;
     console.log("post person : ", req.body);
@@ -62,13 +62,13 @@ router.post("/", async (req, res) => {
 /**
  * get a person by an id
  */
-router.get("/:id", (req, res) => {
-});
+/*router.get("/admin/person/:id", (req, res) => {
+});*/
 
 /**
  * delete a person by an id
  */
-router.delete("/:id", (req, res) => {
-});
+/*router.delete("/admin/person/:id", (req, res) => {
+});*/
 
 module.exports = router;

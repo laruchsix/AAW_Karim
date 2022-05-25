@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const personRouter = require("./person");
-const planningRouter = require("./planning");
-const mancheRouter = require("./manche");
-const loginRouter = require("./Login");
+const personRouter = require("./router/person");
+const planningRouter = require("./router/planning");
+const mancheRouter = require("./router/manche");
+const loginRouter = require("./router/Login");
 
 router.use("/person", personRouter);
 router.use("/planning", planningRouter);

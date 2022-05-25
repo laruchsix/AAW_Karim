@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import Connexion from "./Connexion";
+import {useHistory} from "react-router-dom";
+
 import {
     BrowserRouter,
     Switch,
     Route,
-    Link
+    Link, useHistory
 } from "react-router-dom";
 import Home from "./Home/Home";
 import Login from "./Login";
@@ -13,6 +14,7 @@ import "../style/Menu.css";
 
 const Menu = () => {
 
+    const history = useHistory();
     const [token, setToken] = useState();
 
     const [titlePage, setTitlePage] = useState("Home");
@@ -37,8 +39,7 @@ const Menu = () => {
                <>
                 <h1 className={"user-name"}>{token.name}</h1>
                 {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
-                <Link to="/logout">Logout</Link>
-                <button onClick={Mylogout}>MyLogout</button>
+                <button onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>
                     <Link to="/profile">
@@ -59,8 +60,23 @@ const Menu = () => {
             admin: false
         });
     }
-    const Mylogout = () => {
-        setToken()
+    const logout = () => {
+        let options = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        fetch('/api/logout', options)
+            .then(response => response.json())
+            .then( (data) => {
+                alert("your are disconnected (" + token.first_name + ")");
+                setToken();
+                history.push("/");
+            });
+
     }
 
     return (
