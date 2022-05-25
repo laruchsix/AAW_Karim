@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const utils = require("./utils");
-const requestManager = require("../../../database/databaseRequest");
+const requestManager = require("../database/databaseRequest");
+const dotenv = require("dotenv");
 
 router.get("/cookie", (req, res) => {
     res.send(req.cookies);

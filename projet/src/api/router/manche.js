@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const requestManager = require("../../../database/databaseRequest");
+const requestManager = require("../database/databaseRequest");
 
 
 router.get("/:id", (req, res) => {
