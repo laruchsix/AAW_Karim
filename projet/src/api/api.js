@@ -5,9 +5,9 @@ const planningRouter = require("./router/planning");
 const mancheRouter = require("./router/manche");
 const loginRouter = require("./router/Login");
 
-router.use("/person", personRouter);
-router.use("/planning", planningRouter);
-router.use("/manche", mancheRouter);
+router.use("/", personRouter);
+router.use("/", planningRouter);
+router.use("/", mancheRouter);
 router.use("/", loginRouter);
 
 module.exports = router;

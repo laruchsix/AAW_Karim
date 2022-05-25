@@ -3,7 +3,7 @@ const router = express.Router();
 const requestManager = require("../database/databaseRequest");
 
 
-router.get("/", (req, res) => {
+router.get("/planning/", (req, res) => {
     let sqlRequest = {
         name: "read-planning",
         text: 'SELECT id, name, date FROM planning;',
@@ -12,21 +12,48 @@ router.get("/", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
-router.post("/", (req, res) => {
-    const person = req.body;
+router.post("/user/planning/", (req, res) => {
+    const planning = req.body;
     let sqlRequest = {
-        name: "read-events",
-        text: 'insert into person (name, email, password)' +
-            'VALUES ($1, $2, $3);',
-        values: [person.name, person.email, person.password]
+        text: 'insert into planning (name, date)' +
+            'VALUES ($1, $2);',
+        values: [planning.name, planning.date]
     }
-    requestManager.query(sqlRequest, (err, result) => {
+    requestManager.RequestCallback(sqlRequest, (err, result) => {
         if(err){
-            res.status(500).send({
+            console.log(err);
+            res.status(403).send({
                 error :err
             });
+            return;
         }
-        res.send(result.rows);
+        let sqlRequest = {
+            name: "read-planning",
+            text: 'SELECT id, name, date FROM planning;'
+        }
+        requestManager.basicRequest(sqlRequest, res);
+    })
+})
+
+router.delete("/admin/planning/:id", (req, res) => {
+    const planningId = req.params.id;
+    let sqlRequest = {
+        text: 'DELETE FROM planning WHERE planning.id = ($1);',
+        values: [planningId]
+    }
+    requestManager.RequestCallback(sqlRequest, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(403).send({
+                error :err
+            });
+            return;
+        }
+        let sqlRequest = {
+            name: "read-planning",
+            text: 'SELECT id, name, date FROM planning;'
+        }
+        requestManager.basicRequest(sqlRequest, res);
     })
 })
 

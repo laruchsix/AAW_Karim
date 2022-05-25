@@ -27,7 +27,7 @@ const Menu = () => {
         if (token === undefined) {
             return (
                 <>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" >Login</Link>
                     <Link to="/register">Register</Link>
                 </>
                 /*<>
@@ -42,7 +42,7 @@ const Menu = () => {
                 <button onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>
-                    <Link to="/profile">
+                    <Link  to="/profile">
                         <img
                             className={"user-img"}
                             src="/basic_user_image.png"
@@ -53,13 +53,6 @@ const Menu = () => {
         }
     }
 
-
-    const Mylogin = () => {
-        setToken({
-            name: "John Doe",
-            admin: false
-        });
-    }
     const logout = () => {
         let options = {
             method: "DELETE",
@@ -100,10 +93,10 @@ const Menu = () => {
                 </aside>
                 <Switch>
                     <Route path="/login">
-                        <Login updateToken={updateToken}/>
+                        <Login updateToken={updateToken} token={token}/>
                     </Route>
                     <Route path="/">
-                        <Home />
+                        <Home token={token}/>
                     </Route>
                 </Switch>
             </div>

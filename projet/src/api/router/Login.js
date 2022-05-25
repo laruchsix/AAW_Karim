@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const utils = require("./utils");
+const utils = require("../utils");
 const requestManager = require("../database/databaseRequest");
 const dotenv = require("dotenv");
-
-router.get("/cookie", (req, res) => {
-    res.send(req.cookies);
-});
 
 router.delete("/logout", (req, res) => {
     console.log(req.cookies)
@@ -47,10 +43,7 @@ router.post("/login", async (req, res) => {
             const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000));
 
             let user = result.result.rows[0];
-            console.log(user)
-            let request = 'INSERT INTO token ("person_id", "expired_date") VALUES (' + user.id + ', ' + expirationDate + ') RETURNING id;'
-            console.log(request);
-            // TODO : check if the token of the user all ready exist
+
             result = await requestManager.RequestAsync({
                 text: 'INSERT INTO token ("person_id", "expired_date") VALUES (($1), ($2)) RETURNING token;',
                 values: [user.id, expirationDate]

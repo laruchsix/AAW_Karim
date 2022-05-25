@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 
-const Login = ({updateToken}) => {
+const Login = ({updateToken, token}) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -23,12 +23,10 @@ const Login = ({updateToken}) => {
         fetch('api/login', options)
             .then(response => response.json())
             .then((data) => {
-
                 if (data.error) {
                     setErrorMessage(data.error);
                 } else {
                     updateToken(data);
-                    console.log(data);
                     history.push("/");
                 } })
     }
