@@ -1,4 +1,5 @@
 header {
+    height: 5vh;
     background-color: #3D5A80;
     padding: 8px;
     display: flex;
@@ -95,7 +96,7 @@ a, button {
  */
 .center {
     display: flex;
-    height: 100%;
+    height: 90vh;
 }
 
 aside {
@@ -111,6 +112,7 @@ aside {
 * for the footer
  */
 footer {
+    height: 5vh;
     text-align: end;
     background-color: #3D5A80;
     margin-block: 0px;
