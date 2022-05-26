@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Home from "./Home/Home";
 import Login from "./Login";
+import Register  from "./Register";
 
 import "../style/Menu.css";
 
@@ -95,9 +96,10 @@ const Menu = () => {
                     <Route path="/login">
                         <Login updateToken={updateToken} token={token}/>
                     </Route>
-                    <Route path="/">
-                        <Home token={token}/>
+                    <Route path="/register">
+                        <Register updateToken={updateToken} token={token}/>
                     </Route>
+                    <Home token={token}/>
                 </Switch>
             </div>
             <footer>

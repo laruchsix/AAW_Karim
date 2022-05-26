@@ -18,7 +18,9 @@ const Connexion = (props) => {
         })
             .then(res => res.json())
             .then(data => {
+                updateToken(data);
                 console.log(data);
+                history.push("/");
             });
     };
 
