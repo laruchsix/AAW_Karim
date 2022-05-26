@@ -28,7 +28,7 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
     const addPlanning = (e) => {
         e.preventDefault();
         const body = JSON.stringify({"name":name, "date" : date});
-        fetch('api/user/planning', {
+        fetch('api/admin/planning', {
             method: "POST",
             body: body,
             headers: {
@@ -48,7 +48,7 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
      * @returns {JSX.Element|null} the form to add an planning or null elem
      */
     const displayForm = () => {
-        if (token) {
+        if (token && token.admin) {
             return (<div className={"planning-add"}>
                 <form onSubmit={(e) => addPlanning(e)}>
                     <p>Name</p>
