@@ -28,8 +28,7 @@ const Register = ({updateToken, token}) => {
                 if (data.error) {
                     setErrorMessage(data.error);
                 } else {
-                    updateToken(data);
-                    history.push("/");
+                    history.push("/login");
                 } })
     }
 
