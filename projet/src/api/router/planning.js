@@ -12,7 +12,7 @@ router.get("/planning/", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
-router.post("/user/planning/", (req, res) => {
+router.post("/admin/planning/", (req, res) => {
     const planning = req.body;
     let sqlRequest = {
         text: 'insert into planning (name, date)' +

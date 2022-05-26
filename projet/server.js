@@ -12,8 +12,6 @@ app.use(config.public_Path, express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
-// the api route
-app.use("/api", api_router);
 /*
 app.get("/*", (req, res) => {
     fs.readFile("./dist/index.html", 'utf8', (err, html) => {
@@ -53,7 +51,6 @@ app.use("/api/admin/*", async (req, res, next) => {
 
 app.use("/api/user/*", async (req, res, next) => {
     let token = req.cookies ? req.cookies.token : undefined;
-
     if (!token || !token.id) {
         // remove the cookie
         console.log("** an unconnected person try log on /user/ route **");
@@ -69,6 +66,9 @@ app.use("/api/user/*", async (req, res, next) => {
         }
     }
 });
+
+// the api route
+app.use("/api", api_router);
 
 // able the refresh on the frontend
 app.get("/*", (req, res) => {
