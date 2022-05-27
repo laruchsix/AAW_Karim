@@ -69,8 +69,8 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
             return null;
     }
 
-    const deleteManche = (id) => {
-        fetch(`/api/admin/manche/${id}`, {
+    const deleteManche = (id, id2) => {
+        fetch(`/api/admin/manche/${id}/${id2}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                                     <td>{h.name}</td>
                                     <td><button onClick={() => updateSelectedManche(h)}>View</button></td>
                                     {
-                                        (token && token.admin) ? <td><button onClick={() => deleteManche(h.id)}>Delete</button></td> : null
+                                        (token && token.admin) ? <td><button onClick={() => deleteManche(h.id, h.planning_id)}>Delete</button></td> : null
                                     }
                                 </tr>
                             })

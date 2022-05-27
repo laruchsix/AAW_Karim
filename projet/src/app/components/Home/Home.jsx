@@ -8,7 +8,7 @@ function Home({token, updateToken, titlePage, updateTitlePage}) {
     const [selectedManche, setSelectedManche] = useState();
 
     if (selectedPlanning === undefined)
-        return <PlanningTable updateSelectedPlanning={setSelectedPlanning} token={token}/>;
+        return <PlanningTable updateSelectedPlanning={setSelectedPlanning} token={token} updateToken={updateToken}/>;
     else
         if (selectedManche === undefined)
             return <Planning planning={selectedPlanning} updateSelectedPlanning={setSelectedPlanning} token={token} updateSelectedManche={setSelectedManche}/>;

@@ -5,8 +5,8 @@ const pool = require("../database/database");
 /**
  * get all persons
  */
-router.get("/user/person", (req, res) => {
-    pool.query("SELECT * FROM person;", (err, result) => {
+router.get("/admin/person", (req, res) => {
+    pool.query("SELECT id, first_name, last_name, email, admin FROM person;", (err, result) => {
         if (err) {
             res.status(500).send({
                 error: err

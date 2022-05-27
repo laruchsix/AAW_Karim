@@ -40,8 +40,8 @@ router.post("/login", async (req, res) => {
             })
         } else {
             const now = new Date();
-            const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000));
-
+            const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000) );
+            console.log(expirationDate)
             let user = result.result.rows[0];
 
             result = await requestManager.RequestAsync({

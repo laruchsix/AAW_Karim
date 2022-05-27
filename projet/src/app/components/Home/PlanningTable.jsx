@@ -3,7 +3,7 @@ import "../../style/planningTable.css"
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 
-const PlanningTable = ({updateSelectedPlanning, token}) => {
+const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [planning, setPlanning] = useState();
     const [name, setName] = useState("");
     const [date, setDate] = useState("");
@@ -38,11 +38,21 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
                 "Accept": "application/json"
             }
         })
-            .catch((err) => {
-                console.log(err);
-                setErrorMessage(err);
+            .catch(error => {
+                console.log(JSON.stringify(error));
+                return error;
             })
-            .then(setPlanning());
+            .then((response) => {
+                if (response.status !== 200) {
+                    if (response.status === 401)
+                        updateToken();
+                    else
+                        setErrorMessage(response.statusText);
+                }
+                else {
+                    setPlanning();
+                }
+            });
     }
 
     /**

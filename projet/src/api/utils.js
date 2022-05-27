@@ -39,13 +39,14 @@ const removeToken = async (tokenId) => {
 const isValidToken = async (req) => {
     let token = req.cookies.token;
     let sqlRequest = {
-        text : "SELECT * FROM token WHERE token = ($1) AND expired_date < ($2);",
+        text : "SELECT * FROM token WHERE token = ($1) AND expired_date > ($2);",
         values: [token.id, new Date()]
     }
 
     let result = await requestManager.RequestAsync(sqlRequest);
 
-    if (result.error && result.result.rows.length === 0) {
+
+    if (result.error || result.result.rows.length === 0) {
         return false;
     } else {
         return true;
@@ -58,14 +59,13 @@ const isValidAdmin = async (req) => {
         text : "SELECT * FROM token, person " +
             "WHERE person.id = token.person_id " +
             "AND token.token = ($1) " +
-            "AND expired_date < ($2) " +
+            "AND expired_date > ($2)" +
             "AND person.admin = true;",
         values: [token.id, new Date()]
     }
 
     let result = await requestManager.RequestAsync(sqlRequest);
-
-    if (result.error && result.result.rows.length === 0) {
+    if (result.error || result.result.rows.length === 0) {
         return false;
     } else {
         return true;

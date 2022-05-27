@@ -3,7 +3,6 @@ import "../../style/manche.css"
 
 const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();
-    const [errorMessage, setErrorMessage] = useState("");
 
     // verify if the planning is loaded
     if (planning === undefined || planning.id === undefined) {
@@ -21,7 +20,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
     if (handle === undefined) {
         setHandle({loading: true});
 
-        fetch("/api/subscribe/")
+        fetch("/api/subscribe/" + manche.id + "/" + planning.id)
             .then((res) => res.json())
             .then((data) => {
                 setHandle({
@@ -31,31 +30,71 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
             });
     }
 
+    /**
+     * show button to join the event
+     */
+    const joinButton = (idM, idP, idT) => {
+        if (token) {
+            fetch(`/api/user/subscribe/${idM}/${idP}/${idT}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+                .then(setHandle());
+        } else
+            return null;
+    }
+
+    const deleteFromManche = (idP, idM, id) => {
+        fetch(`/api/admin/subscribe/${idP}/${idM}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then(setHandle());
+    }
+
     if (handle === undefined || handle.loading === true) {
         return <div>Loading...</div>;
     } else {
         return (
-            <div className={"manche-container"}>
+            <div className={"subscribe-container"}>
                 <h1 onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
                 <h1 onClick={() => updateSelectedManche()}>{manche.name}</h1>
-                <div className={"manche-table"}>
+                <div className={"subscribe-table"}>
                     <table>
                         <thead>
                         <tr>
-                            <th>Users first name</th>
-                            <th>Users last name</th>
+                            <th>First name</th>
+                            <th>Last name</th>
                             {
-                                (token && token.admin) ? <th>delete</th> : null
+                                (token && token.admin) ? <th>Remove</th> : null
                             }
                         </tr>
                         </thead>
                         <tbody>
                         {
-                           // TODO get users name and firstName
+                            handle.data.map((s) => {
+                                return <tr key={s.person_id}>
+                                    <td>{s.first_name}</td>
+                                    <td>{s.last_name}</td>
+                                    {
+                                        (token && token.admin) ? <td><button onClick={() => deleteFromManche(s.planning_id, s.manche_id, s.person_id)}>Remove</button></td> : null
+                                    }
+                                </tr>
+                            })
                         }
                         </tbody>
                     </table>
                 </div>
+
+                {
+                    (token) ? <div className={"subscribe-join"}> <button onClick={() => joinButton(manche.id, planning.id, token.id)}>JOIN</button></div> : null
+                }
 
             </div>
 
