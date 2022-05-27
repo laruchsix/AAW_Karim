@@ -43,11 +43,11 @@ router.post("/user/manche/", (req, res) => {
     })
 })
 
-router.delete("/admin/manche/:id", (req, res) => {
-    const manche = req.body;
+router.delete("/admin/manche/:idM/:idP", (req, res) => {
+    const manche = req.params;
     let sqlRequest = {
         text: 'DELETE FROM manche WHERE manche.id = ($1);',
-        values: [manche.id]
+        values: [manche.idM]
     }
     requestManager.RequestCallback(sqlRequest, (err, result) => {
         if(err){
@@ -60,7 +60,7 @@ router.delete("/admin/manche/:id", (req, res) => {
         let sqlRequest = {
             name: "read-manche" + req.params.id,
             text: 'SELECT * FROM manche WHERE planning_id = ($1) ORDER BY ordre;',
-            values: [manche.planning_id]
+            values: [manche.idP]
         }
         requestManager.basicRequest(sqlRequest, res);
     })
