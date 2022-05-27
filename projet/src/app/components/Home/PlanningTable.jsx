@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "../../style/planningTable.css"
 
-const PlanningTable = ({updateSelectedPlanning, token}) => {
+const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [planning, setPlanning] = useState();
     const [name, setName] = useState("");
     const [date, setDate] = useState("");
@@ -36,11 +36,21 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
                 "Accept": "application/json"
             }
         })
-            .catch((err) => {
-                console.log(err);
-                setErrorMessage(err);
+            .catch(error => {
+                console.log(JSON.stringify(error));
+                return error;
             })
-            .then(setPlanning());
+            .then((response) => {
+                if (response.status !== 200) {
+                    if (response.status === 401)
+                        updateToken();
+                    else
+                        setErrorMessage(response.statusText);
+                }
+                else {
+                    setPlanning();
+                }
+            });
     }
 
     /**
@@ -55,7 +65,7 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     <p>Date</p>
                     <input type={"text"} value = {date} onChange={(e)=>setDate(e.currentTarget.value)} />
-                    {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
+                    {errorMessage ? <p className={"error-message"}>{errorMessage}</p> : null}
                     <button>ADD</button>
                 </form>
             </div>)

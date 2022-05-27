@@ -37,14 +37,14 @@ app.use("/api/admin/*", async (req, res, next) => {
         // remove the cookie
         console.log("** an unconnected person try log on /admin/ route **");
         if (token) res.clearCookie("token");
-        res.render("/login");
+        res.status(401).send("Forbidden");
     } else {
         if (await utils.isValidAdmin(req)) {
-            console.log("** tke admin token is valid **")
+            console.log("** the admin token is valid **")
             next();
         } else {
-            console.log("** tke admin token is invalid **")
-            res.status(403).send("Forbidden");
+            console.log("** the admin token is invalid **")
+            res.status(401).send("Forbidden");
         }
     }
 });
@@ -55,14 +55,14 @@ app.use("/api/user/*", async (req, res, next) => {
         // remove the cookie
         console.log("** an unconnected person try log on /user/ route **");
         if (token) res.clearCookie("token");
-        res.render("/login");
+        res.status(401).send("Forbidden");
     } else {
         if (await utils.isValidToken(req)) {
             console.log("** the user token is valid **")
             next();
         } else {
             console.log("** the user token is invalid **")
-            res.status(403).send("Forbidden");
+            res.status(401).send("Forbidden");
         }
     }
 });
@@ -74,7 +74,6 @@ app.use("/api", api_router);
 app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
-
 
 // launch the server
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

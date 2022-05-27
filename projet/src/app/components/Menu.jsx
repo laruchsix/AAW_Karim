@@ -12,6 +12,7 @@ import Login from "./Login";
 import Register  from "./Register";
 
 import "../style/Menu.css";
+import Manage from "./admin/Manage";
 
 const Menu = () => {
 
@@ -30,10 +31,7 @@ const Menu = () => {
                 <>
                     <Link to="/login" >Login</Link>
                     <Link to="/register">Register</Link>
-                </>
-                /*<>
-                    <button onClick={Mylogin}>Login</button>
-                </>*/)
+                </>)
         }
         else {
            return (
@@ -85,22 +83,30 @@ const Menu = () => {
             </header>
             <div className={"center"}>
                 <aside>
-                        <Link to="/">Home</Link>
-                        {
-                            (token !== undefined) ?
-                                <Link to="/subscribe">Plan Sub</Link>
-                                : <></>
-                        }
+                    <Link to="/">Home</Link>
+                    {
+                        (token && token.admin) ?
+                            <Link to="/manage">Manage User</Link>
+                            : <></>
+                    }
                 </aside>
-                <Switch>
-                    <Route path="/login">
-                        <Login updateToken={updateToken} token={token}/>
-                    </Route>
-                    <Route path="/register">
-                        <Register updateToken={updateToken} token={token}/>
-                    </Route>
-                    <Home token={token}/>
-                </Switch>
+                <div className={"page-content"}>
+                    <Switch>
+                        <Route path="/login">
+                            <Login updateToken={updateToken} token={token}/>
+                        </Route>
+                        <Route path="/register">
+                            <Register updateToken={updateToken} token={token}/>
+                        </Route>
+                        <Route path="/manage">
+                            <Manage token={token} />
+                        </Route>
+                        <Route path="/">
+                            <Home token={token} updateToken={updateToken}/>
+                        </Route>
+
+                    </Switch>
+                </div>
             </div>
             <footer>
                 <p>
