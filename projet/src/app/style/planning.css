@@ -1,12 +1,12 @@
-.planning-table table {
+.handle-container table {
     border: 1px solid black;
 }
 
-.planning-table td {
+.handle-container td {
     border: 1px solid black;
 }
 
-.planning-table th {
+.handle-container th {
     border: 1px solid black;
 }
 

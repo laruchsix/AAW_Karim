@@ -45,7 +45,7 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
 
     /**
      * display a form to add an planning if the user is logged in
-     * @returns {JSX.Element|null} the form to add an planning or null elem
+     * @returns {JSX.Element|null} the form to add a planning or null elem
      */
     const displayForm = () => {
         if (token && token.admin) {
@@ -76,7 +76,7 @@ const PlanningTable = ({updateSelectedPlanning, token}) => {
 
     return (
         <div className={"planning-container"}>
-            <h1>Planning</h1>
+            <h1>PlanningHMA</h1>
             {
             (planning === undefined || planning.loading === true) ?
                 <p>Loading...</p>
