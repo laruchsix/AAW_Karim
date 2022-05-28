@@ -37,7 +37,6 @@ const Menu = () => {
            return (
                <>
                 <h1 className={"user-name"}>{token.name}</h1>
-                {(token.admin === true) ? <Link to="/admin">Admin</Link> : ""}
                 <button onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>

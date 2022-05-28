@@ -23,7 +23,7 @@ const getUserTokenByUsername = (userName) => {
 
 const removeToken = async (tokenId) => {
     let sqlRequest = {
-        text : "DELETE FROM token WHERE id = ($1);",
+        text : "DELETE FROM token WHERE token = ($1);",
         values: [tokenId]
     }
 
@@ -44,7 +44,6 @@ const isValidToken = async (req) => {
     }
 
     let result = await requestManager.RequestAsync(sqlRequest);
-
 
     if (result.error || result.result.rows.length === 0) {
         return false;

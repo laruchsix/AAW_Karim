@@ -63,6 +63,7 @@ router.post("/login", async (req, res) => {
                     email : user.email,
                     admin : user.admin
                 };
+                console.log(tokenContent);
                 res.cookie("token", tokenContent);
 
                 res.send(tokenContent);

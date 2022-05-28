@@ -32,14 +32,16 @@ const Login = ({updateToken, token}) => {
     }
 
     return (
-        <form onSubmit={(e) => validate(e)}>
-            <p>Email :</p>
-            <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
-            <p>Password :</p>
-            <input type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
-            <div><p>{errorMessage}</p></div>
-            <button>Login</button>
-        </form>
+        <div className={"middle"}>
+            <form  onSubmit={(e) => validate(e)}>
+                <p>Email :</p>
+                <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
+                <p>Password :</p>
+                <input type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
+                <div><p>{errorMessage}</p></div>
+                <button>Login</button>
+            </form>
+        </div>
     )
 }
 
