@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import "../../style/planningTable.css"
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 
 const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [planning, setPlanning] = useState();
@@ -64,8 +66,8 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     <p>Date</p>
-                    <input type={"text"} value = {date} onChange={(e)=>setDate(e.currentTarget.value)} />
-                    {errorMessage ? <p className={"error-message"}>{errorMessage}</p> : null}
+                    <Calendar onChange={setDate} value={date}/>
+                    {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
                     <button>ADD</button>
                 </form>
             </div>)
