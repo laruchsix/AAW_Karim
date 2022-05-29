@@ -3,14 +3,17 @@ import Planning from "./Planning";
 import PlanningTable from "./PlanningTable";
 import Manche from "./Manche";
 
-function Home({token, updateToken, titlePage, updateTitlePage}) {
+const Home = ({token, updateToken, title, updateTitle}) => {
+    if (title !== "Home")
+        updateTitle("Home");
+
     const [selectedPlanning, setSelectedPlanning] = useState();
     const [selectedManche, setSelectedManche] = useState();
 
-    if (selectedPlanning === undefined)
+    if (!selectedPlanning)
         return <PlanningTable updateSelectedPlanning={setSelectedPlanning} token={token} updateToken={updateToken}/>;
     else
-        if (selectedManche === undefined)
+        if (!selectedManche)
             return <Planning planning={selectedPlanning} updateSelectedPlanning={setSelectedPlanning} token={token} updateSelectedManche={setSelectedManche}/>;
         else
             return <Manche planning={selectedPlanning} manche={selectedManche} updateSelectedPlanning={setSelectedPlanning} token={token} updateSelectedManche={setSelectedManche}/>;

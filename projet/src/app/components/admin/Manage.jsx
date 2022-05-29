@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 
-const Manage = ({token}) => {
+const Manage = ({token, title, updateTitle}) => {
+    if (title !== "Manage users")
+        updateTitle("Manage users");
+    
     const history = useHistory();
 
     if (!token) {

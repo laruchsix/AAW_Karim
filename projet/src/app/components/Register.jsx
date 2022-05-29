@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 
-const Register = ({updateToken, token}) => {
+const Register = ({updateToken, token, title, updateTitle}) => {
+    if (title !== "Register")
+        updateTitle("Register");
+
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");

@@ -90,16 +90,16 @@ const Menu = () => {
                 <div className={"page-content"}>
                     <Switch>
                         <Route path="/login">
-                            <Login updateToken={updateToken} token={token}/>
+                            <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/register">
-                            <Register updateToken={updateToken} token={token}/>
+                            <Register updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/manage">
-                            <Manage token={token} />
+                            <Manage token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/">
-                            <Home token={token} updateToken={updateToken}/>
+                            <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
 
                     </Switch>

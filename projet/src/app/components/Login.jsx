@@ -1,7 +1,11 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+import "../style/Login.css";
 
-const Login = ({updateToken, token}) => {
+const Login = ({updateToken, token, title, updateTitle}) => {
+    if (title !== "Login")
+        updateTitle("Login");
+
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -32,7 +36,7 @@ const Login = ({updateToken, token}) => {
     }
 
     return (
-        <div className={"middle"}>
+        <div className={"middle panel"}>
             <form  onSubmit={(e) => validate(e)}>
                 <p>Email :</p>
                 <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
