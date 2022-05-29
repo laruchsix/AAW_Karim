@@ -15,12 +15,6 @@
     display: flex;
 }
 
-.subscribe-titles-manche:hover{
-    color: #EE6C4D;
-    font-style: italic;
-    cursor: pointer;
-}
-
 .subscribe-container {
     padding-left: 10px;
 }

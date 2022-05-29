@@ -30,7 +30,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const addPlanning = (e) => {
         e.preventDefault();
         if(name == ""){
-            alert("Please a name to your event !")
+            alert("Enter a name for your new planning !")
         }
         else {
             const body = JSON.stringify({"name": name, "date": date});
@@ -96,6 +96,17 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
             .then(setPlanning());
     }
 
+    /**
+     * get the date in appropriate form
+     * @param string of date
+     */
+    const getDate = (s) => {
+        var date = new Date(s);
+        console.log(date.toString());
+        console.log(s);
+        return date.toLocaleString("fr");
+    }
+
     return (
         <div className={"planning-container"}>
             <div className={"planning-table"}>
@@ -120,7 +131,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                                 planning.data.map((p) => {
                                     return <tr key={p.id} className={"table-line"}>
                                         <td>{p.name}</td>
-                                        <td>{p.date}</td>
+                                        <td>{getDate(p.date)}</td>
                                         <td>
                                             <div className={"center-content"}>
                                                 <img className={"view-img"}

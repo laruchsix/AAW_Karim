@@ -135,7 +135,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
     } else {
         return (
             <div className={"subscribe-container"}>
-                <div className={"subscribe-titles"}><h1>{planning.name}==>&emsp;</h1> <h1 className={"subscribe-titles-manche"} onClick={() => updateSelectedManche()}>{manche.name}</h1></div>
+                <div className={"subscribe-titles"}><h1>{planning.name}==>&emsp;</h1> <h1 className={"titles-hover"} onClick={() => updateSelectedManche()}>{manche.name}</h1></div>
                 <div className={"subscribe-table"}>
                     <table>
                         <thead>

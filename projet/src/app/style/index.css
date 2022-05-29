@@ -66,3 +66,9 @@ tr > * {
     align-items: center;
     justify-content: center;
 }
+
+.titles-hover:hover{
+    color: #EE6C4D;
+    font-style: italic;
+    cursor: pointer;
+}

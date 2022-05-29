@@ -162,10 +162,12 @@ footer {
 .view-img {
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 .bin-img {
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
 .plus-img{

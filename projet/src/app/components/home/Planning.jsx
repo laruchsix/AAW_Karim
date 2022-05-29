@@ -50,7 +50,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
         }
         else
         {
-            alert("Please add a name to your event !");
+            alert("Enter a name for your manche !");
         }
     }
 
@@ -91,7 +91,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
     } else {
         return (
             <div className={"handle-container"}>
-                <h1 onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
+                <h1 className={"titles-hover"} onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
                 <div className={"handle-table"}>
                     <table>
                         <thead>
