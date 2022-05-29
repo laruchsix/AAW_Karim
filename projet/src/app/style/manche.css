@@ -1,5 +1,6 @@
 .subscribe-container table {
     border: 1px solid black;
+    text-align: center;
 }
 
 .subscribe-container td {
@@ -10,3 +11,12 @@
     border: 1px solid black;
 }
 
+.subscribe-titles {
+    display: flex;
+}
+
+.subscribe-titles-manche:hover{
+    color: #EE6C4D;
+    font-style: italic;
+    cursor: pointer;
+}

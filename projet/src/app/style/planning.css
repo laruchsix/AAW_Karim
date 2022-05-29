@@ -1,5 +1,6 @@
 .handle-container table {
     border: 1px solid black;
+    text-align: center;
 }
 
 .handle-container td {
@@ -21,4 +22,13 @@
 
 .planning-form {
     padding-right: 5vw;
+}
+
+.table-line > * {
+    padding: 2px 4px ;
+}
+
+.manche-add {
+    display: inline-flex;
+    margin: 10px;
 }

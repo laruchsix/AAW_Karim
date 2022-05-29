@@ -63,8 +63,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
     } else {
         return (
             <div className={"subscribe-container"}>
-                <h1 onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
-                <h1 onClick={() => updateSelectedManche()}>{manche.name}</h1>
+                <div className={"subscribe-titles"}><h1>{planning.name} :: &emsp; </h1> <h1 className={"subscribe-titles-manche"} onClick={() => updateSelectedManche()}>{manche.name}</h1></div>
                 <div className={"subscribe-table"}>
                     <table>
                         <thead>
@@ -83,7 +82,12 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
                                     <td>{s.first_name}</td>
                                     <td>{s.last_name}</td>
                                     {
-                                        (token && token.admin) ? <td><button onClick={() => deleteFromManche(s.planning_id, s.manche_id, s.person_id)}>Remove</button></td> : null
+                                        (token && token.admin) ? <td>
+                                            <img className={"bin-img"}
+                                                 onClick={() => deleteFromManche(s.planning_id, s.manche_id, s.person_id)}
+                                                 src="bin.png"
+                                                 alt="remove user"/>
+                                        </td> : null
                                     }
                                 </tr>
                             })

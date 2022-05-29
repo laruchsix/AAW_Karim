@@ -1,5 +1,6 @@
 .planning-table table {
     border: 1px solid black;
+    text-align: center;
 }
 
 .planning-table td {

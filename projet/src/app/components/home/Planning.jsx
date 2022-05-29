@@ -55,14 +55,14 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
      */
     const displayForm = () => {
         if (token) {
-            return (<div className={"manche-add"}>
-                <form onSubmit={(e) => addManche(e)}>
+            return (
+                <form className={"manche-add"} onSubmit={(e) => addManche(e)}>
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
                     <button>ADD</button>
                 </form>
-            </div>)
+            )
         } else
             return null;
     }
@@ -103,24 +103,18 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                                     <td>{h.ordre}</td>
                                     <td>{h.name}</td>
                                     <td>
-                                        <div className={"center-content"}>
-                                            <img className={"view-img"}
-                                                 onClick={() => updateSelectedManche(h)}
-                                                 src="eyes.png"
-                                                 alt="view handle"/>
-                                        </div>
+                                        <img className={"view-img"}
+                                             onClick={() => updateSelectedManche(h)}
+                                             src="eyes.png"
+                                             alt="view manche"/>
                                     </td>
                                     {
-                                        (token && token.admin)
-                                            ? <td>
-                                                <div className={"center-content"}>
-                                                    <img className={"bin-img"}
-                                                         onClick={() => deleteManche(h.id, h.planning_id)}
-                                                         src="bin.png"
-                                                         alt="delete handle" />
-                                                </div>
-                                            </td>
-                                            : null
+                                        (token && token.admin) ? <td>
+                                            <img className={"bin-img"}
+                                                 onClick={() => deleteManche(h.id, h.planning_id)}
+                                                 src="bin.png"
+                                                 alt="delete manche"/>
+                                        </td> : null
                                     }
                                 </tr>
                             })
