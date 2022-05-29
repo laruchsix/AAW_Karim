@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../../style/planningTable.css"
+import "../../style/PlanningTable.css"
 import DateTimePicker from "react-datetime-picker";
 
 const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {

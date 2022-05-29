@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../../style/manche.css"
+import "../../style/Manche.css"
 
 const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();

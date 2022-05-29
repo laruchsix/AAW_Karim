@@ -10,6 +10,7 @@ const utils = require("./src/api/utils");
 
 // server config
 app.use(config.public_Path, express.static("public"));
+app.use(config.public_Path, express.static("dist"));
 
 app.use(express.json());
 
@@ -60,25 +61,31 @@ app.use("/api", api_router);
 
 // able the refresh on the frontend
 
-/*app.get("/*", (req, res) => {
-    fs.readFile("./public/index.html", 'utf8', (err, html) => {
+app.get("/*", (req, res) => {
+    (process.env.MODE !== "production")
+        ?res.sendFile(__dirname + "/public/indexDev.html")
+        :res.sendFile(__dirname + "/public/index.html");
+    /*
+    fs.readFile("./public/index.html", 'utf8', async (err, html) => {
         if (err) {
             console.error(err);
         } else {
-            let result = (process.env.MODE !== "production")
-                ? html.replace('$js', 'http://localhost:1234/index.js')
-                : html.replace('$js', './index.js');
-            app.use(cookieParser());
+            let result = await (process.env.MODE !== "production")
+                ? html.replace('js', 'http://localhost:1234/index.js')
+                : html.replace('js', 'index.js');
 
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.send(result);
+            let result2 = await (process.env.MODE !== "production")
+                ? result.replace('css', 'http://localhost:1234/index.css')
+                : result.replace('css', 'index.css');
+
+            await res.writeHead(200, {'Content-Type': 'text/html'});
+            res.send(result2);
         }
-    })
-
-});*/
-app.get("/*", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+    })*/
 });
+/*app.get("/*", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});*/
 
 // launch the server
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

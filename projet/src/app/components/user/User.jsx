@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../../style/user.css"
+import "../../style/User.css"
 
 const User = ({token}) => {
     const [subs, setSubs] = useState();

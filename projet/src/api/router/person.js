@@ -47,16 +47,4 @@ router.post("/person/", async (req, res) => {
 
 });
 
-/**
- * get a person by an id
- */
-/*router.get("/admin/person/:id", (req, res) => {
-});*/
-
-/**
- * delete a person by an id
- */
-/*router.delete("/admin/person/:id", (req, res) => {
-});*/
-
 module.exports = router;
