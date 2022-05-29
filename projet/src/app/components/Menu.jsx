@@ -26,6 +26,10 @@ const Menu = () => {
         setToken(value);
     }
 
+    const updateTitlePage = (value) => {
+        setTitlePage(value);
+    }
+
     const userElems = () => {
         if (token === undefined) {
             return (
@@ -94,16 +98,16 @@ const Menu = () => {
                             <User updateToken={updateToken} token={token}/>
                         </Route>
                         <Route path="/login">
-                            <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
+                            <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
                         <Route path="/register">
-                            <Register updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
+                            <Register updateToken={updateToken} token={token} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
                         <Route path="/manage">
-                            <Manage token={token} title={titlePage} updateTitle={setTitlePage}/>
+                            <Manage token={token} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
                         <Route path="/">
-                            <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={setTitlePage}/>
+                            <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
 
                     </Switch>
