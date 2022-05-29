@@ -23,8 +23,8 @@ router.post("/user/manche/", (req, res) => {
     const manche = req.body;
     let sqlRequest = {
         text: 'insert into manche (name, ordre, planning_id)' +
-            'VALUES ($1, $2, $3);',
-        values: [manche.name, manche.ordre, manche.planning_id]
+            'VALUES ($1, (select max(ordre) from manche) + 1, $2);',
+        values: [manche.name, manche.planning_id]
     }
     requestManager.RequestCallback(sqlRequest, (err, result) => {
         if(err){
