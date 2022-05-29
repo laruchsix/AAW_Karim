@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
-import "../../style/Manage.css";
 
 const Manage = ({token}) => {
     const history = useHistory();
