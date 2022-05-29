@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import "../../style/planningTable.css"
-import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import DateTimePicker from "react-datetime-picker";
 
 const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [planning, setPlanning] = useState();
@@ -9,6 +8,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [date, setDate] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    //load plannings
     if (!planning) {
         setPlanning({
             loading: true,
@@ -29,30 +29,34 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
      */
     const addPlanning = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name, "date" : date});
-        fetch('api/admin/planning', {
-            method: "POST",
-            body: body,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-            .catch(error => {
-                console.log(JSON.stringify(error));
-                return error;
+        if(name == ""){
+            alert("Enter a name for your new planning !")
+        }
+        else {
+            const body = JSON.stringify({"name": name, "date": date});
+            fetch('api/admin/planning', {
+                method: "POST",
+                body: body,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
             })
-            .then((response) => {
-                if (response.status !== 200) {
-                    if (response.status === 401)
-                        updateToken();
-                    else
-                        setErrorMessage(response.statusText);
-                }
-                else {
-                    setPlanning();
-                }
-            });
+                .catch(error => {
+                    console.log(JSON.stringify(error));
+                    return error;
+                })
+                .then((response) => {
+                    if (response.status !== 200) {
+                        if (response.status === 401)
+                            updateToken();
+                        else
+                            setErrorMessage(response.statusText);
+                    } else {
+                        setPlanning();
+                    }
+                });
+        }
     }
 
     /**
@@ -68,7 +72,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     <p>Date</p>
-                    <Calendar onChange={setDate} value={date}/>
+                    <DateTimePicker onChange={setDate} value={date}/>
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
                     <button className={"basic-button"}>Add</button>
                 </form>
@@ -78,6 +82,9 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
             return null;
     }
 
+    /**
+     * delete a planning with his id
+     */
     const deletePlanning = (id) => {
         fetch(`/api/admin/planning/${id}`, {
             method: "DELETE",
@@ -87,6 +94,15 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
             }
         })
             .then(setPlanning());
+    }
+
+    /**
+     * get the date in appropriate form
+     * @param string of date
+     */
+    const getDate = (s) => {
+        var date = new Date(s);
+        return date.toLocaleString("fr");
     }
 
     return (
@@ -113,7 +129,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                                 planning.data.map((p) => {
                                     return <tr key={p.id} className={"table-line"}>
                                         <td>{p.name}</td>
-                                        <td>{p.date}</td>
+                                        <td>{getDate(p.date)}</td>
                                         <td>
                                             <div className={"center-content"}>
                                                 <img className={"view-img"}

@@ -10,6 +10,7 @@ import {
 import Home from "./home/Home";
 import Login from "./Login";
 import Register  from "./Register";
+import User  from "./user/User";
 
 import "../style/Menu.css";
 import Manage from "./admin/Manage";
@@ -36,7 +37,7 @@ const Menu = () => {
         else {
            return (
                <>
-                <h1 className={"user-name"}>{token.name}</h1>
+                   <h1 className={"user-name"}>{token.name}</h1>
                 <button className={"nav-button"} onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>
@@ -89,6 +90,9 @@ const Menu = () => {
                 </aside>
                 <div className={"page-content"}>
                     <Switch>
+                        <Route path="/profile">
+                            <User updateToken={updateToken} token={token}/>
+                        </Route>
                         <Route path="/login">
                             <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>

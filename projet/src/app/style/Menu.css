@@ -43,6 +43,16 @@ nav > * {
     font-size: 18px;
 }
 
+.nav-button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #EE6C4D;
+}
+
+.nav-button:hover h1{
+    color: #EE6C4D;
+}
+
 .nav-link {
     font-size: 20px;
     text-decoration: unset;
@@ -162,10 +172,18 @@ footer {
 .view-img {
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 .bin-img {
     width: 24px;
     height: 24px;
+    cursor: pointer;
+}
+
+.plus-img{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
 

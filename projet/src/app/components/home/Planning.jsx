@@ -4,7 +4,6 @@ import "../../style/planning.css"
 const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();
     const [name, setName] = useState("");
-    const [order, setOrder] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     // verify if the planning is loaded
@@ -13,7 +12,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
         return <div>No planning selected</div>;
     }
 
-    // load
+    // load the manches of the planning
     if (handle === undefined) {
         setHandle({loading: true});
 
@@ -33,20 +32,26 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
      */
     const addManche = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name, "planning_id": planning.id});
-        fetch('api/user/manche', {
-            method: "POST",
-            body: body,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-            .catch((err) => {
-                console.log(err);
-                setErrorMessage(err);
+        if (name != "") {
+            const body = JSON.stringify({"name": name, "planning_id": planning.id});
+            fetch('api/user/manche', {
+                method: "POST",
+                body: body,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
             })
-            .then(setHandle());
+                .catch((err) => {
+                    console.log(err);
+                    setErrorMessage(err);
+                })
+                .then(setHandle());
+        }
+        else
+        {
+            alert("Enter a name for your manche !");
+        }
     }
 
     /**
@@ -67,6 +72,9 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
             return null;
     }
 
+    /**
+     * delete a manche with the id of the planning and of the manche
+     */
     const deleteManche = (id, id2) => {
         fetch(`/api/admin/manche/${id}/${id2}`, {
             method: "DELETE",
@@ -83,7 +91,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
     } else {
         return (
             <div className={"handle-container"}>
-                <h1 onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
+                <h1 className={"titles-hover"} onClick={() => updateSelectedPlanning()}>{planning.name}</h1>
                 <div className={"handle-table"}>
                     <table>
                         <thead>
@@ -122,13 +130,10 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                         </tbody>
                     </table>
                 </div>
-
                 {displayForm()}
             </div>
-
         )
     }
-
 }
 
 export default Planning;

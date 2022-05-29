@@ -78,3 +78,9 @@ tr > * {
     font-size: 18px;
     margin: 5px;
 }
+
+.titles-hover:hover{
+    color: #EE6C4D;
+    font-style: italic;
+    cursor: pointer;
+}
