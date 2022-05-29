@@ -7,12 +7,12 @@ router.get("/user/manches/:id", (req, res) => {
     const tokenData = req.params.id;
     let sqlRequest = {
         name: "read-person-data",
-        text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
+        text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date ' +
+            ' FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
             ' INNER JOIN manche ON manche.id = inscription.manche_id ' +
             ' WHERE inscription.person_id = (SELECT token.person_id FROM token WHERE token.token = $1)',
         values: [tokenData]
     }
-    console.log(res);
     requestManager.basicRequest(sqlRequest, res);
 });
 
@@ -33,7 +33,8 @@ router.delete("/user/:idM/:idP/:idT", (req, res) => {
         }
         let sqlRequest = {
             name: "read-person-data",
-            text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
+            text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date ' +
+                ' FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
                 ' INNER JOIN manche ON manche.id = inscription.manche_id ' +
                 ' WHERE inscription.person_id = (SELECT token.person_id FROM token WHERE token.token = $1)',
             values: [ids.idT]

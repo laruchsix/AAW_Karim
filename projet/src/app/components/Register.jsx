@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import "../style/Login.css";
+import {useEffect} from "react";
 
 const Register = ({updateToken, token, title, updateTitle}) => {
-    if (title !== "Register")
-        updateTitle("Register");
+    useEffect(() => {
+        if (title !== "Register"){
+            updateTitle("Register");
+        }
+    }, [title])
 
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
