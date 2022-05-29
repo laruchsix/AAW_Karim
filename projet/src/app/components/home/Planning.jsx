@@ -60,7 +60,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
-                    <button>ADD</button>
+                    <button className={"basic-button"}>Add</button>
                 </form>
             )
         } else

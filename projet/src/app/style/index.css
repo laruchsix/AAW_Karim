@@ -66,3 +66,15 @@ tr > * {
     align-items: center;
     justify-content: center;
 }
+
+.basic-button {
+    background-color: #EE6C4D;
+    border: 2px solid #3D5A80;
+    border-radius: 5px;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 5px;
+}

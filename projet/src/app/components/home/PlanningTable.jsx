@@ -70,7 +70,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                     <p>Date</p>
                     <Calendar onChange={setDate} value={date}/>
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
-                    <button>ADD</button>
+                    <button className={"basic-button"}>Add</button>
                 </form>
             </div>
             </>)
