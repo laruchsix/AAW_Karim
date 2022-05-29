@@ -1,10 +1,10 @@
 header {
-    height: 7vh;
     background-color: #3D5A80;
-    padding: 8px;
+    /*padding: 8px;*/
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    height: 9vh;
 }
 
 
@@ -31,7 +31,7 @@ nav > * {
 /*
  * Style for bottom menu
  */
-a, button {
+.nav-button {
     background-color: #EE6C4D;
     border: 2px solid #293241;
     border-radius: 10px;
@@ -41,6 +41,12 @@ a, button {
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
+}
+
+.nav-link {
+    font-size: 20px;
+    text-decoration: unset;
+    color: white;
 }
 
 /*
@@ -104,7 +110,7 @@ a, button {
  */
 .center {
     display: flex;
-    height: 83vh;
+    height: 88vh;
 }
 
 aside {
@@ -114,6 +120,12 @@ aside {
     align-content: flex-start;
     flex-direction: column;
     margin-block: 0px;
+    width: 12vw;
+}
+
+aside > * {
+    margin-top: 10px;
+    margin-left: 4px;
 }
 
 /**
@@ -124,9 +136,9 @@ footer {
     text-align: end;
     background-color: #3D5A80;
     margin-block: 0px;
-    padding-top: 10px;
+    /*padding-top: 10px;
     padding-block-end: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 10px;*/
 }
 
 .middle {
@@ -141,3 +153,14 @@ footer {
     width: 100%;
     overflow-y: scroll;
 }
+
+.view-img {
+    width: 24px;
+    height: 24px;
+}
+.bin-img {
+    width: 24px;
+    height: 24px;
+}
+
+

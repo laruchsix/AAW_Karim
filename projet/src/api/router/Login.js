@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
         } else {
             const now = new Date();
             const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000) );
-            console.log(expirationDate)
+            //console.log(expirationDate)
             let user = result.result.rows[0];
 
             result = await requestManager.RequestAsync({
@@ -63,7 +63,6 @@ router.post("/login", async (req, res) => {
                     email : user.email,
                     admin : user.admin
                 };
-                console.log(tokenContent);
                 res.cookie("token", tokenContent);
 
                 res.send(tokenContent);

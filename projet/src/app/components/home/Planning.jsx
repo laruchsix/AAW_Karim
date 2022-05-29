@@ -92,7 +92,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                         <tr>
                             <th>Order</th>
                             <th>Name</th>
-                            <th>view</th>
+                            <th>View</th>
                             {
                                 (token && token.admin) ? <th>delete</th> : null
                             }

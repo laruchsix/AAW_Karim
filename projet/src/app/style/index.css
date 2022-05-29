@@ -17,9 +17,20 @@ div {
     margin: 0px;
 }
 
+thead {
+    background-color: #EE6C4D;
+    color: #ffffff;
+}
+
+tbody {
+    background-color: #d8f7f8;
+}
+
+
 * {
     font-family: "Garamond", serif;
 }
+
 p {
     margin-block-start: 0px;
     margin-block-end: 0px;
@@ -27,4 +38,27 @@ p {
 
 table, th, td {
     border: 1px solid;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #E0FBFC;
+    border-radius: 10px;
+}
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

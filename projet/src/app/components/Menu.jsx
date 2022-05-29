@@ -7,7 +7,7 @@ import {
     Route,
     Link, useHistory
 } from "react-router-dom";
-import Home from "./Home/Home";
+import Home from "./home/Home";
 import Login from "./Login";
 import Register  from "./Register";
 
@@ -29,18 +29,18 @@ const Menu = () => {
         if (token === undefined) {
             return (
                 <>
-                    <Link to="/login" >Login</Link>
-                    <Link to="/register">Register</Link>
+                    <Link className={"nav-button"} to="/login" >Login</Link>
+                    <Link className={"nav-button"} to="/register">Register</Link>
                 </>)
         }
         else {
            return (
                <>
                 <h1 className={"user-name"}>{token.name}</h1>
-                <button onClick={logout}>Logout</button>
+                <button className={"nav-button"} onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>
-                    <Link  to="/profile">
+                    <Link  className={"nav-button"} to="/profile">
                         <img
                             className={"user-img"}
                             src="/basic_user_image.png"
@@ -82,10 +82,10 @@ const Menu = () => {
             </header>
             <div className={"center"}>
                 <aside>
-                    <Link to="/">Home</Link>
+                    <Link className={"nav-link"} to="/">Home</Link>
                     {
                         (token && token.admin) ?
-                            <Link to="/manage">Manage User</Link>
+                            <Link className={"nav-link"} to="/manage">Manage User</Link>
                             : <></>
                     }
                 </aside>
@@ -108,7 +108,7 @@ const Menu = () => {
                 </div>
             </div>
             <footer>
-                <p>
+                <p style={{color : "white"}}>
                     By EUR and almost EUR company
                 </p>
             </footer>
