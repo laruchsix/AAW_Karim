@@ -104,9 +104,25 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
                                 return <tr key={h.id}>
                                     <td>{h.ordre}</td>
                                     <td>{h.name}</td>
-                                    <td><button onClick={() => updateSelectedManche(h)}>View</button></td>
+                                    <td>
+                                        <div className={"center-content"}>
+                                            <img className={"view-img"}
+                                                 onClick={() => updateSelectedManche(h)}
+                                                 src="eyes.png"
+                                                 alt="view handle"/>
+                                        </div>
+                                    </td>
                                     {
-                                        (token && token.admin) ? <td><button onClick={() => deleteManche(h.id, h.planning_id)}>Delete</button></td> : null
+                                        (token && token.admin)
+                                            ? <td>
+                                                <div className={"center-content"}>
+                                                    <img className={"bin-img"}
+                                                         onClick={() => deleteManche(h.id, h.planning_id)}
+                                                         src="bin.png"
+                                                         alt="delete handle" />
+                                                </div>
+                                            </td>
+                                            : null
                                     }
                                 </tr>
                             })

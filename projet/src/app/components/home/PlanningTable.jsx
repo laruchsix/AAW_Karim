@@ -101,7 +101,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                             <thead>
                             <tr className={"table-line"}>
                                 <th>Name</th>
-                                <th>Date</th> 
+                                <th>Date</th>
                                 <th>View</th>
                                 {
                                     (token && token.admin) ? <th>Delete</th> : null
@@ -112,9 +112,9 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                             {
                                 planning.data.map((p) => {
                                     return <tr key={p.id} className={"table-line"}>
-                                        <td >{p.name}</td>
+                                        <td>{p.name}</td>
                                         <td>{p.date}</td>
-                                        <td >
+                                        <td>
                                             <div className={"center-content"}>
                                                 <img className={"view-img"}
                                                           onClick={() => updateSelectedPlanning(p)}
@@ -124,7 +124,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                                         </td>
                                         {
                                             (token && token.admin) ?
-                                                <td >
+                                                <td>
                                                     <div className={"center-content"}>
                                                         <img className={"bin-img"}
                                                               onClick={() => deletePlanning(p.id)}

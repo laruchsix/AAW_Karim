@@ -62,12 +62,10 @@ const Menu = () => {
 
         fetch('/api/logout', options)
             .then(response => response.json())
-            .then( async (data) => {
-                await alert("your are disconnected (" + token.name + ")");
-                setToken();
+            .then((data) => {
+                setToken(); 
                 history.push("/");
             });
-
     }
 
     return (
