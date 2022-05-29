@@ -37,7 +37,7 @@ const Menu = () => {
         else {
            return (
                <>
-                   <Link className={"nav-button"} to="/user" ><h1 className={"user-name"}>{token.name}</h1></Link>
+                   <h1 className={"user-name"}>{token.name}</h1>
                 <button className={"nav-button"} onClick={logout}>Logout</button>
 
                 <div className={"user-container"}>
@@ -90,20 +90,20 @@ const Menu = () => {
                 </aside>
                 <div className={"page-content"}>
                     <Switch>
-                        <Route path="/user">
+                        <Route path="/profile">
                             <User updateToken={updateToken} token={token}/>
                         </Route>
                         <Route path="/login">
-                            <Login updateToken={updateToken} token={token}/>
+                            <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/register">
-                            <Register updateToken={updateToken} token={token}/>
+                            <Register updateToken={updateToken} token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/manage">
-                            <Manage token={token} />
+                            <Manage token={token} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
                         <Route path="/">
-                            <Home token={token} updateToken={updateToken}/>
+                            <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={setTitlePage}/>
                         </Route>
 
                     </Switch>

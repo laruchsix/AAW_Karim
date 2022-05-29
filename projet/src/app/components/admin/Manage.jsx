@@ -1,7 +1,11 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+import "../../style/Manage.css";
 
-const Manage = ({token}) => {
+const Manage = ({token, title, updateTitle}) => {
+    if (title !== "Manage users")
+        updateTitle("Manage users");
+
     const history = useHistory();
 
     if (!token) {
@@ -95,9 +99,9 @@ const Manage = ({token}) => {
             <div className={"persons-container"}>
                 <h1>Manage</h1>
                 <div className={"manager-buttons-container"}>
-                    <button onClick={disconnectAll}>Disconnect All</button>
-                    <button onClick={disconnectAdmins}>Disconnect admins</button>
-                    <button onClick={disconnectBasicUsers}>Disconnect Basic Users</button>
+                    <button className={"basic-button"} onClick={disconnectAll}>Disconnect All</button>
+                    <button className={"basic-button"} onClick={disconnectAdmins}>Disconnect admins</button>
+                    <button className={"basic-button"} onClick={disconnectBasicUsers}>Disconnect Basic Users</button>
                 </div>
                 <div className={"persons-table"}>
                     <table>

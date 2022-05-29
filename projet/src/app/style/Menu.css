@@ -115,10 +115,6 @@ nav > * {
     margin: 0px;
 }
 
-.user-name:hover{
-    color: #EE6C4D;
-}
-
 .user-img {
     width: 38px;
     height: 38px;

@@ -166,7 +166,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
                     </table>
                 </div>
                 {
-                    (token) ? <div className={"subscribe-join"}> <button onClick={() => joinButton(manche.id, planning.id, token.id)}>JOIN</button></div> : null
+                    (token) ? <div className={"subscribe-join"}> <button className={"basic-button"} onClick={() => joinButton(manche.id, planning.id, token.id)}>JOIN</button></div> : null
                 }
 
                 {

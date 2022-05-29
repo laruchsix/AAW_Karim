@@ -74,7 +74,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                     <p>Date</p>
                     <DateTimePicker onChange={setDate} value={date}/>
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
-                    <button>ADD</button>
+                    <button className={"basic-button"}>Add</button>
                 </form>
             </div>
             </>)
