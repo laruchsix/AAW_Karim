@@ -4,30 +4,18 @@ const port = 3000;
 const config = require("./config");
 const api_router = require("./src/api/api");
 const fs = require("fs");
+const dotenv = require("dotenv");
 var cookieParser = require('cookie-parser');
 const utils = require("./src/api/utils");
 
 // server config
 app.use(config.public_Path, express.static("public"));
+
 app.use(express.json());
+
 app.use(cookieParser());
 
-/*
-app.get("/*", (req, res) => {
-    fs.readFile("./dist/index.html", 'utf8', (err, html) => {
-        if (err) {
-            console.error(err);
-        } else {
-            let result = (process.env.MODE !== "production")
-                ? html.replace('$js', 'http://localhost:3000/index.js')
-                : html.replace('$js', './index.js');
 
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.send(result);
-        }
-    })
-
-});*/
 
 // Security
 app.use("/api/admin/*", async (req, res, next) => {
@@ -71,6 +59,23 @@ app.use("/api/user/*", async (req, res, next) => {
 app.use("/api", api_router);
 
 // able the refresh on the frontend
+
+/*app.get("/*", (req, res) => {
+    fs.readFile("./public/index.html", 'utf8', (err, html) => {
+        if (err) {
+            console.error(err);
+        } else {
+            let result = (process.env.MODE !== "production")
+                ? html.replace('$js', 'http://localhost:1234/index.js')
+                : html.replace('$js', './index.js');
+            app.use(cookieParser());
+
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.send(result);
+        }
+    })
+
+});*/
 app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
