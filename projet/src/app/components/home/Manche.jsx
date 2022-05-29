@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import "../../style/manche.css"
+import Calendar from "react-calendar";
 
 const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();
+    const [users, setUsers] = useState();
 
     // verify if the planning is loaded
     if (planning === undefined || planning.id === undefined) {
@@ -30,21 +32,44 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
             });
     }
 
+    // load users
+    if (users === undefined) {
+        setUsers({loading: true});
+        console.log("/api/subscribe/users/" + manche.id + "/" + planning.id);
+        fetch("/api/subscribe/users/" + manche.id + "/" + planning.id)
+            .then((result) => result.json())
+            .then((persons) => {
+                setUsers({
+                    loading: false,
+                    data: persons
+                })
+            });
+    }
+
+    const addUserAct = (idM, idP, idT) => {
+        fetch(`/api/userBis/subscribe/${idM}/${idP}/${idT}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then(setHandle())
+            .then(setUsers());
+    }
+
     /**
      * show button to join the event
      */
     const joinButton = (idM, idP, idT) => {
-        if (token) {
-            fetch(`/api/user/subscribe/${idM}/${idP}/${idT}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                }
-            })
-                .then(setHandle());
-        } else
-            return null;
+        fetch(`/api/user/subscribe/${idM}/${idP}/${idT}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then(setHandle());
     }
 
     const deleteFromManche = (idP, idM, id) => {
@@ -55,7 +80,42 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
                 "Accept": "application/json"
             }
         })
-            .then(setHandle());
+            .then(setHandle())
+            .then(setUsers());
+    }
+
+    const displayUsers = () => {
+        if (users === undefined || users.loading === true || users.data === undefined) {
+            return <div>Unable to found users to add...</div>;
+        } else {
+            return (
+                <table>
+                    <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Add to activity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        users.data.map((u) => {
+                            return <tr key={u.id}>
+                                <td>{u.first_name}</td>
+                                <td>{u.last_name}</td>
+                                <td>
+                                    <img className={"plus-img"}
+                                         src="plus.png"
+                                         onClick={() => addUserAct(manche.id, planning.id, u.id)}
+                                         alt="plus user"/>
+                                </td>
+                            </tr>
+                        })
+                    }
+                    </tbody>
+                </table>
+            )
+        }
     }
 
     if (handle === undefined || handle.loading === true) {
@@ -63,7 +123,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
     } else {
         return (
             <div className={"subscribe-container"}>
-                <div className={"subscribe-titles"}><h1>{planning.name} :: &emsp; </h1> <h1 className={"subscribe-titles-manche"} onClick={() => updateSelectedManche()}>{manche.name}</h1></div>
+                <div className={"subscribe-titles"}><h1>{planning.name}==>&emsp;</h1> <h1 className={"subscribe-titles-manche"} onClick={() => updateSelectedManche()}>{manche.name}</h1></div>
                 <div className={"subscribe-table"}>
                     <table>
                         <thead>
@@ -95,9 +155,17 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
                         </tbody>
                     </table>
                 </div>
-
                 {
                     (token) ? <div className={"subscribe-join"}> <button onClick={() => joinButton(manche.id, planning.id, token.id)}>JOIN</button></div> : null
+                }
+
+                {
+                    (token && token.admin) ?
+                        <div className={"subscribe-add-users-admin"}>
+                            <h1>Select users to add</h1>
+                            {displayUsers()}
+                        </div>
+                        : null
                 }
 
             </div>

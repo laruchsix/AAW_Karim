@@ -4,7 +4,6 @@ import "../../style/planning.css"
 const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();
     const [name, setName] = useState("");
-    const [order, setOrder] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     // verify if the planning is loaded
