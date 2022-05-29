@@ -33,7 +33,7 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
      */
     const addManche = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name, "ordre" : order, "planning_id": planning.id});
+        const body = JSON.stringify({"name":name, "planning_id": planning.id});
         fetch('api/user/manche', {
             method: "POST",
             body: body,
@@ -57,8 +57,6 @@ const Planning = ({planning, updateSelectedPlanning, token, updateSelectedManche
         if (token) {
             return (<div className={"manche-add"}>
                 <form onSubmit={(e) => addManche(e)}>
-                    <p>Order</p>
-                    <input type={"text"} value = {order} onChange={(e)=>setOrder(e.currentTarget.value)} />
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}

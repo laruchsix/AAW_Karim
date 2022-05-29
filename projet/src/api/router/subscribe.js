@@ -29,10 +29,6 @@ router.post("/user/subscribe/:idM/:idP/:idT", (req, res) => {
     }
     requestManager.RequestCallback(sqlRequest, (err, result) => {
         if(err){
-            console.log(err);
-            res.status(403).send({
-                error :err
-            });
             return;
         }
         let sqlRequest = {
@@ -52,7 +48,6 @@ router.delete("/admin/subscribe/:idP/:idM/:id", (req, res) => {
     }
     requestManager.RequestCallback(sqlRequest, (err, result) => {
         if(err){
-            console.log(err);
             res.status(403).send({
                 error :err
             });
