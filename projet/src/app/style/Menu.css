@@ -49,6 +49,11 @@ nav > * {
     color: white;
 }
 
+.nav-link:hover {
+    color: #EE6C4D;
+    text-decoration: underline;
+}
+
 /*
  * the title content
  */
