@@ -102,8 +102,6 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
      */
     const getDate = (s) => {
         var date = new Date(s);
-        console.log(date.toString());
-        console.log(s);
         return date.toLocaleString("fr");
     }
 

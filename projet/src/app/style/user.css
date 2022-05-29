@@ -1,0 +1,16 @@
+.user-tables table {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.user-tables td {
+    border: 1px solid black;
+}
+
+.user-tables th {
+    border: 1px solid black;
+}
+
+.user-container {
+    padding-left: 10px;
+}

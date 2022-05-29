@@ -7,6 +7,7 @@ const loginRouter = require("./router/Login");
 const registerRouter = require("./router/Register");
 const subscribeRouter = require("./router/subscribe");
 const tokenRouter = require("./router/Token");
+const userRouter = require("./router/user");
 
 router.use("/", personRouter);
 router.use("/", planningRouter);
@@ -15,6 +16,7 @@ router.use("/", loginRouter);
 router.use("/", registerRouter);
 router.use("/", subscribeRouter);
 router.use("/", tokenRouter);
+router.use("/", userRouter);
 
 module.exports = router;
 

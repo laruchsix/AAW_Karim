@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import "../../style/manche.css"
-import Calendar from "react-calendar";
 
 const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelectedManche}) => {
     const [handle, setHandle] = useState();
@@ -35,7 +34,6 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
     // load users
     if (users === undefined) {
         setUsers({loading: true});
-        console.log("/api/subscribe/users/" + manche.id + "/" + planning.id);
         fetch("/api/subscribe/users/" + manche.id + "/" + planning.id)
             .then((result) => result.json())
             .then((persons) => {

@@ -3,7 +3,7 @@ import Planning from "./Planning";
 import PlanningTable from "./PlanningTable";
 import Manche from "./Manche";
 
-function Home({token, updateToken, titlePage, updateTitlePage}) {
+function Home({token, updateToken}) {
     const [selectedPlanning, setSelectedPlanning] = useState();
     const [selectedManche, setSelectedManche] = useState();
 
