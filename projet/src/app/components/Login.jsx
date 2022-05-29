@@ -1,10 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import "../style/Login.css";
 
 const Login = ({updateToken, token, title, updateTitle}) => {
-    if (title !== "Login")
-        updateTitle("Login");
+    useEffect(() => {
+        if (title !== "Login") {
+            updateTitle("Login");
+        }
+    }, [title])
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");

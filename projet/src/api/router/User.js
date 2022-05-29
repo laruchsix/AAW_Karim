@@ -13,7 +13,6 @@ router.get("/user/manches/:id", (req, res) => {
             ' WHERE inscription.person_id = (SELECT token.person_id FROM token WHERE token.token = $1)',
         values: [tokenData]
     }
-    console.log(res);
     requestManager.basicRequest(sqlRequest, res);
 });
 
