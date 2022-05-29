@@ -7,12 +7,11 @@ router.get("/user/manches/:id", (req, res) => {
     const tokenData = req.params.id;
     let sqlRequest = {
         name: "read-person-data",
-        text: 'SELECT * FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
+        text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
             ' INNER JOIN manche ON manche.id = inscription.manche_id ' +
             ' WHERE inscription.person_id = (SELECT token.person_id FROM token WHERE token.token = $1)',
         values: [tokenData]
     }
-    console.log(sqlRequest);
     console.log(res);
     requestManager.basicRequest(sqlRequest, res);
 });
@@ -21,7 +20,7 @@ router.get("/user/manches/:id", (req, res) => {
 router.delete("/user/:idM/:idP/:idT", (req, res) => {
     const ids = req.params;
     let sqlRequest = {
-        text: 'DELETE FROM inscription WHERE inscription.planning_id = ($1) AND inscription.manche_id = $2 AND inscription.person_id = (SELECT person_id FROM token WHERE token.token = $2);',
+        text: 'DELETE FROM inscription WHERE inscription.planning_id = ($1) AND inscription.manche_id = $2 AND inscription.person_id = (SELECT person_id FROM token WHERE token.token = $3);',
         values: [ids.idP, ids.idM, ids.idT]
     }
     requestManager.RequestCallback(sqlRequest, (err, result) => {
@@ -34,7 +33,7 @@ router.delete("/user/:idM/:idP/:idT", (req, res) => {
         }
         let sqlRequest = {
             name: "read-person-data",
-            text: 'SELECT * FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
+            text: 'SELECT inscription.planning_id, inscription.manche_id, inscription.person_id, planning.name as name_p, manche.name as name_m, planning.date FROM (inscription INNER JOIN planning ON planning.id = inscription.planning_id) ' +
                 ' INNER JOIN manche ON manche.id = inscription.manche_id ' +
                 ' WHERE inscription.person_id = (SELECT token.person_id FROM token WHERE token.token = $1)',
             values: [ids.idT]

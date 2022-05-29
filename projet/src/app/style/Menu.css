@@ -43,6 +43,16 @@ nav > * {
     font-size: 18px;
 }
 
+.nav-button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #EE6C4D;
+}
+
+.nav-button:hover h1{
+    color: #EE6C4D;
+}
+
 .nav-link {
     font-size: 20px;
     text-decoration: unset;
@@ -106,7 +116,7 @@ nav > * {
 }
 
 .user-name:hover{
-    cursor: pointer;
+    color: #EE6C4D;
 }
 
 .user-img {

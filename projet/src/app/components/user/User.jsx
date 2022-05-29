@@ -65,9 +65,9 @@ const User = ({token}) => {
                                     {
                                         subs.data.map((p) => {
                                             return <tr key={p.person_id}>
-                                                <td>{p.name}</td>
+                                                <td>{p.name_p}</td>
                                                 <td>{getDate(p.date)}</td>
-                                                <td>{p.name}</td>
+                                                <td>{p.name_m}</td>
                                                 <td>
                                                     <div className={"center-content"}>
                                                         <img className={"bin-img"}
