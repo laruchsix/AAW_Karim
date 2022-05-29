@@ -18,7 +18,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
         return <div>No manche selected</div>;
     }
 
-    // load
+    // load users in the manche
     if (handle === undefined) {
         setHandle({loading: true});
 
@@ -46,6 +46,10 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
             });
     }
 
+    /**
+     * add a user in a specific manche in a planning
+     * @param idP: id of planning, idM: id of manche, idT: id of person
+     */
     const addUserAct = (idM, idP, idT) => {
         fetch(`/api/userBis/subscribe/${idM}/${idP}/${idT}`, {
             method: "POST",
@@ -60,6 +64,7 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
 
     /**
      * show button to join the event
+     * @param idP: id of planning, idM: id of manche, idT: id of token
      */
     const joinButton = (idM, idP, idT) => {
         fetch(`/api/user/subscribe/${idM}/${idP}/${idT}`, {
@@ -72,6 +77,10 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
             .then(setHandle());
     }
 
+    /**
+     * function to delete a user from a specific manche in a planning
+     * @param idP: id of planning, idM: id of manche, id: id of person
+     */
     const deleteFromManche = (idP, idM, id) => {
         fetch(`/api/admin/subscribe/${idP}/${idM}/${id}`, {
             method: "DELETE",
@@ -84,6 +93,9 @@ const Manche = ({planning, manche, updateSelectedPlanning, token, updateSelected
             .then(setUsers());
     }
 
+    /**
+     * function to display the users for the admins
+     */
     const displayUsers = () => {
         if (users === undefined || users.loading === true || users.data === undefined) {
             return <div>Unable to found users to add...</div>;

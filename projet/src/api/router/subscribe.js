@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const requestManager = require("../database/databaseRequest");
 
+//get all inscription in a manche in a planning
 router.get("/subscribe/:idM/:idP", (req, res) => {
     const subs = req.params;
     if (subs.idM === undefined || subs.idP === undefined) {
@@ -19,6 +20,7 @@ router.get("/subscribe/:idM/:idP", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
+//to add a person a manche in a planning with the token id
 router.post("/user/subscribe/:idM/:idP/:idT", (req, res) => {
     const subs = req.params;
     let sqlRequest = {
@@ -39,6 +41,7 @@ router.post("/user/subscribe/:idM/:idP/:idT", (req, res) => {
     })
 })
 
+//to add a person a manche in a planning with the person id
 router.post("/userBis/subscribe/:idM/:idP/:idT", (req, res) => {
     const subs = req.params;
     let sqlRequest = {
@@ -76,6 +79,7 @@ router.get("/subscribe/users/:idM/:idP", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
+//delete a person from a manche from a planning
 router.delete("/admin/subscribe/:idP/:idM/:id", (req, res) => {
     const subs = req.params;
     let sqlRequest = {

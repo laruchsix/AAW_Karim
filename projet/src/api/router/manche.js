@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const requestManager = require("../database/databaseRequest");
 
-
+//get all manche from a planning id
 router.get("/manche/:id", (req, res) => {
     if (req.params.id === undefined) {
         res.status(400).send({
@@ -19,6 +19,7 @@ router.get("/manche/:id", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
+//add a manche in a planning
 router.post("/user/manche/", (req, res) => {
     const manche = req.body;
     let sqlRequest = {
@@ -43,6 +44,7 @@ router.post("/user/manche/", (req, res) => {
     })
 })
 
+//delete a manche with id from a planning
 router.delete("/admin/manche/:idM/:idP", (req, res) => {
     const manche = req.params;
     let sqlRequest = {

@@ -8,6 +8,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [date, setDate] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    //load plannings
     if (!planning) {
         setPlanning({
             loading: true,
@@ -28,30 +29,34 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
      */
     const addPlanning = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name, "date" : date});
-        fetch('api/admin/planning', {
-            method: "POST",
-            body: body,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-            .catch(error => {
-                console.log(JSON.stringify(error));
-                return error;
+        if(name == ""){
+            alert("Please a name to your event !")
+        }
+        else {
+            const body = JSON.stringify({"name": name, "date": date});
+            fetch('api/admin/planning', {
+                method: "POST",
+                body: body,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
             })
-            .then((response) => {
-                if (response.status !== 200) {
-                    if (response.status === 401)
-                        updateToken();
-                    else
-                        setErrorMessage(response.statusText);
-                }
-                else {
-                    setPlanning();
-                }
-            });
+                .catch(error => {
+                    console.log(JSON.stringify(error));
+                    return error;
+                })
+                .then((response) => {
+                    if (response.status !== 200) {
+                        if (response.status === 401)
+                            updateToken();
+                        else
+                            setErrorMessage(response.statusText);
+                    } else {
+                        setPlanning();
+                    }
+                });
+        }
     }
 
     /**
@@ -77,6 +82,9 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
             return null;
     }
 
+    /**
+     * delete a planning with his id
+     */
     const deletePlanning = (id) => {
         fetch(`/api/admin/planning/${id}`, {
             method: "DELETE",

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const requestManager = require("../database/databaseRequest");
 
-
+//get all plannings
 router.get("/planning/", (req, res) => {
     let sqlRequest = {
         name: "read-planning",
@@ -12,6 +12,7 @@ router.get("/planning/", (req, res) => {
     requestManager.basicRequest(sqlRequest, res);
 });
 
+//add a planning
 router.post("/admin/planning/", (req, res) => {
     const planning = req.body;
     let sqlRequest = {
@@ -35,6 +36,7 @@ router.post("/admin/planning/", (req, res) => {
     })
 })
 
+//delete a planning
 router.delete("/admin/planning/:id", (req, res) => {
     const planningId = req.params.id;
     let sqlRequest = {
