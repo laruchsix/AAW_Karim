@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+import "../style/Login.css";
 
 const Register = ({updateToken, token, title, updateTitle}) => {
     if (title !== "Register")
@@ -36,18 +37,21 @@ const Register = ({updateToken, token, title, updateTitle}) => {
     }
 
     return (
-        <form onSubmit={(e) => validate(e)}>
-            <p>First Name :</p>
-            <input type={"text"} value = {firstname} onChange={(e)=>setFirstname(e.currentTarget.value)} />
-            <p>Last Name :</p>
-            <input type={"text"} value = {lastname} onChange={(e)=>setLastname(e.currentTarget.value)} />
-            <p>Email :</p>
-            <input type={"email"} value = {email} onChange={(e)=>setEmail(e.currentTarget.value)} />
-            <p>Password :</p>
-            <input type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
-            <div><p>{errorMessage}</p></div>
-            <button>Register</button>
-        </form>
+        <div className={"middle panel"}>
+            <h1 className={"title-signin"}>Register</h1>
+            <form onSubmit={(e) => validate(e)}>
+                <p>First Name :</p>
+                <input type={"text"} value = {firstname} onChange={(e)=>setFirstname(e.currentTarget.value)} />
+                <p>Last Name :</p>
+                <input type={"text"} value = {lastname} onChange={(e)=>setLastname(e.currentTarget.value)} />
+                <p>Email :</p>
+                <input type={"email"} value = {email} onChange={(e)=>setEmail(e.currentTarget.value)} />
+                <p>Password :</p>
+                <input type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
+                <div><p className={"error-message"}>{errorMessage}</p></div>
+                <div className={"center-content"}><button className={"basic-button"}>Register</button></div>
+            </form>
+        </div>
     )
 }
 
