@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import "../../style/planningTable.css"
-import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import DateTimePicker from "react-datetime-picker";
 
 const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
     const [planning, setPlanning] = useState();
@@ -68,7 +67,7 @@ const PlanningTable = ({updateSelectedPlanning, token, updateToken}) => {
                     <p>Name</p>
                     <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                     <p>Date</p>
-                    <Calendar onChange={setDate} value={date}/>
+                    <DateTimePicker onChange={setDate} value={date}/>
                     {errorMessage !== "" ? <p className={"error-message"}>{errorMessage}</p> : null}
                     <button>ADD</button>
                 </form>
