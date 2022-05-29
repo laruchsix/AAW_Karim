@@ -63,8 +63,8 @@ const User = ({token}) => {
                                     </thead>
                                     <tbody>
                                     {
-                                        subs.data.map((p) => {
-                                            return <tr key={p.person_id}>
+                                        subs.data.map((p, index) => {
+                                            return <tr key={index}>
                                                 <td>{p.name_p}</td>
                                                 <td>{getDate(p.date)}</td>
                                                 <td>{p.name_m}</td>

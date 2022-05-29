@@ -19,7 +19,6 @@ const Menu = () => {
 
     const history = useHistory();
     const [token, setToken] = useState();
-
     const [titlePage, setTitlePage] = useState("Home");
 
     const updateToken = (value) => {
